@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "bootstrap": "^5.1.1",
+    "express-handlebars": "^5.3.3"
+  }
+}
