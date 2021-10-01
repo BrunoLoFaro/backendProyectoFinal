@@ -49,23 +49,21 @@ export class ListaCarritos{
 
 let vLote =
 [
+
 	{
-		title: "vaso",
-		price: 124,
-		thumbnail: "https://w7.pngwing.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
-		id: 1
+        id:1,
+        timestamp:"",
+        //producto:vLoteProducto,
 	},
 	{
-		title: "reloj",
-		price: 434,
-		thumbnail: "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
-		id: 2
+        id:2,
+        timestamp:"",
+        //producto:vLoteProducto,
 	},
 	{
-		title: "miel",
-		price: 72,
-		thumbnail: "https://cdn-icons-png.flaticon.com/512/1378/1378481.png",
-		id: 3
+        id:3,
+        timestamp:"",
+        //producto:vLoteProducto,
 	}
 ]
 let listaProd = new ListaCarritos(vLote)

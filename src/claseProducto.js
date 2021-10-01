@@ -49,23 +49,36 @@ export class ListaProductos{
 
 let vLote =
 [
+
 	{
-		title: "vaso",
-		price: 124,
-		thumbnail: "https://w7.pngwing.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
-		id: 1
+        id:1,
+        timestamp:"",
+        nombre:"reloj",
+        descripcion:"",
+        codigo:"",
+        foto:"https://w7.pngwing.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+        precio:"434",
+        stock:"434",
 	},
 	{
-		title: "reloj",
-		price: 434,
-		thumbnail: "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
-		id: 2
+        id:2,
+        timestamp:"",
+        nombre:"",
+        descripcion:"",
+        codigo:"",
+        foto:"https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
+        precio:"434",
+        stock:"434",
 	},
 	{
-		title: "miel",
-		price: 72,
-		thumbnail: "https://cdn-icons-png.flaticon.com/512/1378/1378481.png",
-		id: 3
+        id:3,
+        timestamp:"",
+        nombre:"reloj",
+        descripcion:"",
+        codigo:"",
+        foto:"https://cdn-icons-png.flaticon.com/512/1378/1378481.png",
+        precio:"434",
+        stock:"434",
 	}
 ]
 let listaProd = new ListaProductos(vLote)
