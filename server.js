@@ -16,7 +16,8 @@ const server = app.listen(PORT, ()=>{
 });
 server.on('error', error=>console.log('Error en servidor', error));
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use('/api', router);
 
 app.get('/productos/listar', (req,res)=>{
@@ -38,6 +39,7 @@ app.get('/productos/listar/:id', (req,res)=>{
     let id = params.id;
     let busq;
     archProductos.leer().then((productos_leidos)=>{
+
         try{
             busq= listaProd.getProducto(id)
         }
@@ -49,19 +51,25 @@ app.get('/productos/listar/:id', (req,res)=>{
 });
 
 
+/* El programa consta de un vector "lista" y un archivo "archivo".
+En el vector se carga la totalidad del archivo.
+ actualizarArch() hace lo anteriormente mencionado. */
+
+async function actualizarLista(archivo, lista){
+    archivo.leer().then((registros_leidos)=>{
+        lista.setLista(archivo.vector) 
+})
+}
+
+
 app.post('/productos/agregar/',(req,res)=>{
     let prod = req.body;
     let incorporado;
-    archProductos.leer().then((productos_leidos)=>{
-        try{
-            incorporado=listaProd.setProducto(prod)
-        }
-        catch{
-            incorporado={}//respuesta de error?
-        }
-        res.json(incorporado);   
+    actualizarLista(archProductos,listaProd).then(()=>{
+        incorporado=listaProd.setProducto(prod)
+        archProductos.guardar(listaProd.getProductos())
+        res.json(incorporado)
     })
-    archProductos.guardar()
 })
 
 app.put('/productos/actualizar/:id/:titulo/:precio/:imagen', (req,res)=>{

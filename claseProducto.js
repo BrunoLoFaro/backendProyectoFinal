@@ -11,9 +11,10 @@ export class ListaProductos{
         return busq
     }
     setProducto(prod){
-            let index = this.vLista.find(e=>e.codigo==prod.codigo)
+            let index = (this.vLista).find(e=>e.codigo==prod.codigo)
             if(index===undefined)
             {
+                prod['id']=this.vLista.length+1
                 this.vLista.push(prod)
                 return prod
             }
@@ -23,6 +24,10 @@ export class ListaProductos{
                 return {}
             }
 
+    }
+    setLista(vec){
+        this.vLista=vec;
+        return vec
     }
     updateProducto(prod, id){
         try{
@@ -52,13 +57,12 @@ export class ListaProductos{
 
 let vLoteProductos =
 [
-
 	{
         id:1,
         timestamp:"",
         nombre:"reloj",
         descripcion:"",
-        codigo:"",
+        codigo:"1",
         foto:"https://w7.pngwing.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
         precio:"434",
         stock:"434",
@@ -68,7 +72,7 @@ let vLoteProductos =
         timestamp:"",
         nombre:"",
         descripcion:"",
-        codigo:"",
+        codigo:"2",
         foto:"https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
         precio:"434",
         stock:"434",
@@ -78,7 +82,7 @@ let vLoteProductos =
         timestamp:"",
         nombre:"reloj",
         descripcion:"",
-        codigo:"",
+        codigo:"3",
         foto:"https://cdn-icons-png.flaticon.com/512/1378/1378481.png",
         precio:"434",
         stock:"434",

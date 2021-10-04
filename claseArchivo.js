@@ -10,19 +10,22 @@ export class Archivo{
     }
 
     async leer(mostrar=true){
-        try{
+        //try{
             let lect = await fs.promises.readFile(this.nombre,'utf-8')
-            this.vector=JSON.parse(lect)
-            return mostrar? this.vector:0
-        }
-        catch{
-            return []
-        }
+            this.vector=lect//guardo lo leido en el vector de la clase
+            return 1
+            //return mostrar? this.vector:0
+        //}
+        //catch(err){
+            /*console.log(err)
+            return []*/
+        //}
     }
     async guardar(obj){
         /*await this.leer(false).catch(()=>fs.promises.writeFile(this.nombre,""))
                 obj['id']=this.vector.length+1
                 this.vector.push(obj)*/
+                this.vector=obj;
                 await fs.promises.writeFile(this.nombre,JSON.stringify(this.vector, null, '\t')) 
             }
     async borrar(){
