@@ -12,13 +12,13 @@ export class Archivo{
     async leer(mostrar=true){
         //try{
             let lect = await fs.promises.readFile(this.nombre,'utf-8')
-            //console.log(lect)
             this.vector=JSON.parse(lect)//guardo lo leido en el vector de la clase
-            //console.log(this.vector)
             return 1
             //return mostrar? this.vector:0
         //}
         //catch(err){
+        //    console.log(err)
+        //    throw(err)
             /*console.log(err)
             return []*/
         //}

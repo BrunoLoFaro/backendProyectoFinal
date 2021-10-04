@@ -28,15 +28,5 @@
 		"foto": "https://cdn-icons-png.flaticon.com/512/1378/1378481.png",
 		"precio": "434",
 		"stock": "434"
-	},
-	{
-		"id": 4,
-		"timestamp": "",
-		"nombre": "",
-		"descripcion": "",
-		"codigo": "3dadasd2adasa3a",
-		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
-		"precio": "434",
-		"stock": "434"
 	}
 ]

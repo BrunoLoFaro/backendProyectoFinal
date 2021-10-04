@@ -71,8 +71,7 @@ app.post('/productos/agregar/',(req,res)=>{
                 archProductos.guardar(listaProd.getLista())
             }
             catch(e){
-                console.log(e)
-                incorporado={}
+                console.log(e+"adentro ")
             }
             finally{
                 res.json(incorporado)

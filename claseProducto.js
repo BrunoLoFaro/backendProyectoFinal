@@ -12,12 +12,9 @@ export class ListaProductos{
     }
     setLista(vec){
         this.vLista=vec;
-        console.log(typeof(this.vLista))
         return 1
     }
     setProducto(prod){
-        console.log(this.vLista)
-        console.log(typeof(this.vLista))
         let index = this.vLista.find(e=>e.codigo==prod.codigo)
             if(index===undefined)
             {
@@ -26,7 +23,7 @@ export class ListaProductos{
             }
             else
             {
-                throw new Error({"Error":"El producto ya existe"});
+                throw new Error({'Error':"El produto ya existe"});
                 //return {}
             }
         return prod
