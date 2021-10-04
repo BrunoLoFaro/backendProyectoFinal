@@ -12,16 +12,6 @@
 	{
 		"id": 2,
 		"timestamp": "",
-		"nombre": "",
-		"descripcion": "",
-		"codigo": "2",
-		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
-		"precio": "434",
-		"stock": "434"
-	},
-	{
-		"id": 3,
-		"timestamp": "",
 		"nombre": "reloj",
 		"descripcion": "",
 		"codigo": "3",
@@ -30,7 +20,7 @@
 		"stock": "434"
 	},
 	{
-		"id": 4,
+		"id": 3,
 		"timestamp": "",
 		"nombre": "",
 		"descripcion": "",
@@ -40,7 +30,7 @@
 		"stock": "434"
 	},
 	{
-		"id": 5,
+		"id": 4,
 		"timestamp": "",
 		"nombre": "",
 		"descripcion": "",
@@ -50,7 +40,7 @@
 		"stock": "434"
 	},
 	{
-		"id": 6,
+		"id": 5,
 		"timestamp": "",
 		"nombre": "",
 		"descripcion": "",

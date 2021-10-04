@@ -31,14 +31,14 @@ export class ListaProductos{
             }
         return prod
     }
-    updateProducto(prod, id){
+    updateProducto(prod){
         try{
-            let index = this.vLista.findIndex(x=>x.id==id)
+            let index = this.vLista.findIndex(x=>x.id==prod.id)
             this.vLista[index]=prod
             return this.vLista[index]
         }
         catch(err){
-            console.log(err)
+            throw new Error({'Error':"El producto no existe"});
         }
     }
     eliminateProducto(id){

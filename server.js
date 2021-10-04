@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/productos', routerProductos);
 app.use('/carritos', routerCarritos);
 
-let admin=false
+let admin=true
 
 routerProductos.get('/listar/:id', (req,res)=>{
     let params = req.params;
@@ -41,16 +41,6 @@ routerProductos.get('/listar/:id', (req,res)=>{
         }
     })
 });
-
-
-/* El programa consta de un vector "lista" y un archivo "archivo".
-En el vector se carga la totalidad del archivo.
- actualizarArch() hace lo anteriormente mencionado. */
-
-async function actualizarLista(archivo, lista){
-        let a = await archivo.leer()
-        lista.setLista(archivo.vector)
-}
 
 
 routerProductos.post('/agregar',(req,res)=>{
@@ -84,44 +74,60 @@ routerProductos.post('/agregar',(req,res)=>{
 
 routerProductos.put('/actualizar/:id/:titulo/:precio/:imagen', (req,res)=>{
     if (admin){
-        let params = req.params;
-        let id = params.id;
-        let prod ={		
-            title: params.titulo,//por query los params vienen como string.
-            price: parseInt(params.precio),//tendría efecto si usaramos una bd.
-            thumbnail: params.imagen,
-            id: id, 
-        }
-        let actualizado
-        try{
-            listaProd.updateProducto(prod,id)
-            actualizado=listaProd.getProducto(id)
-        }
-        catch{
-            actualizado={}     
-        }
-    res.json({actualizado});
+        let prod = req.body;
+        let actualizado;
+    //    try{
+            actualizarLista(archProductos,listaProd).then(()=>{
+                try{
+                    actualizado=listaProd.udpdateProducto(prod)
+                    archProductos.guardar(listaProd.getLista())
+                }
+                catch(err){
+                    console.log(err)
+                    actualizado=err
+                }
+                finally{
+                    res.json(actualizado)
+                }
+            })
+    //   }
+    //    catch(e){
+    //    console.log(e)
+    //    }   
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /actualizar no autorizada`});
     }
 });
 
 routerProductos.delete('/borrar/:id', (req,res)=>{
     if(admin){
-        let params = req.params;
-        let id = params.id;
-        let eliminado
-        try{
-            listaProd.eliminateProducto(id)
-            eliminado=listaProd.getProducto(id)
-        }
-        catch{
-            eliminado={}
-        }
-        res.json({eliminado});
+            actualizarLista(archProductos,listaProd).then(()=>{
+            let params = req.params;
+            let id = params.id;
+            let eliminado
+            try{
+                eliminado=listaProd.getProducto(id)
+                listaProd.eliminateProducto(id)
+                archProductos.guardar(listaProd.getLista())
+            }
+            catch(err){
+                console.log(err)
+                eliminado=err
+            }
+            res.json({eliminado});
+        })
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
-    }
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /eliminar no autorizada`});
+}
 });
+
+/* El programa consta de un vector "lista" y un archivo "archivo".
+En el vector se carga la totalidad del archivo.
+ actualizarArch() hace lo anteriormente mencionado. */
+
+ async function actualizarLista(archivo, lista){
+    let a = await archivo.leer()
+    lista.setLista(archivo.vector)
+}
