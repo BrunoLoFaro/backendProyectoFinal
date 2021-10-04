@@ -8,7 +8,8 @@ let archProductos = new Archivo("productos.txt");
 
 const app = express();
 const PORT = 8080;//process.env.PORT for GLITCH
-const router = express.Router();
+const routerProductos = express.Router();
+const routerCarritos = express.Router();
 
 const server = app.listen(PORT, ()=>{
     console.log('Servidor HTTP escuchando en el puerto', server.address().port);
@@ -18,9 +19,10 @@ server.on('error', error=>console.log('Error en servidor', error));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use('/api', router);
+app.use('/productos', routerProductos);
+app.use('/carritos', routerCarritos);
 
-app.get('/productos/listar', (req,res)=>{
+routerProductos.get('/listar', (req,res)=>{
     archProductos.leer().then((productos_leidos)=>{
 
         /*let vProductos
@@ -34,7 +36,7 @@ app.get('/productos/listar', (req,res)=>{
     })
 });
 
-app.get('/productos/listar/:id', (req,res)=>{
+routerProductos.get('/listar/:id', (req,res)=>{
     let params = req.params;
     let id = params.id;
     let busq;
@@ -61,7 +63,7 @@ async function actualizarLista(archivo, lista){
 }
 
 
-app.post('/productos/agregar/',(req,res)=>{
+routerProductos.post('/agregar',(req,res)=>{
     let prod = req.body;
     let incorporado;
 //    try{
@@ -85,7 +87,7 @@ app.post('/productos/agregar/',(req,res)=>{
 
 })
 
-app.put('/productos/actualizar/:id/:titulo/:precio/:imagen', (req,res)=>{
+routerProductos.put('/actualizar/:id/:titulo/:precio/:imagen', (req,res)=>{
     let params = req.params;
     let id = params.id;
     let prod ={		
@@ -106,7 +108,7 @@ app.put('/productos/actualizar/:id/:titulo/:precio/:imagen', (req,res)=>{
     res.json({actualizado});
 });
 
-app.delete('/productos/borrar/:id', (req,res)=>{
+routerProductos.delete('/borrar/:id', (req,res)=>{
     let params = req.params;
     let id = params.id;
     let eliminado

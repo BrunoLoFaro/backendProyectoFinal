@@ -38,5 +38,15 @@
 		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
 		"precio": "434",
 		"stock": "434"
+	},
+	{
+		"id": 5,
+		"timestamp": "",
+		"nombre": "",
+		"descripcion": "",
+		"codigo": "3000003a",
+		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
+		"precio": "434",
+		"stock": "434"
 	}
 ]
