@@ -1,33 +1,35 @@
 export class ListaProductos{
-    #vLista
+    vLista=[]
     constructor(vProductos){
         this.vLista=vProductos
     }
-    getProductos(){
+    getLista(){
         return this.vLista
     }
     getProducto(codigo){
         let busq= this.vLista.find(x=>x.codigo==codigo)
         return busq
     }
+    setLista(vec){
+        this.vLista=vec;
+        console.log(typeof(this.vLista))
+        return 1
+    }
     setProducto(prod){
-            let index = (this.vLista).find(e=>e.codigo==prod.codigo)
+        console.log(this.vLista)
+        console.log(typeof(this.vLista))
+        let index = this.vLista.find(e=>e.codigo==prod.codigo)
             if(index===undefined)
             {
                 prod['id']=this.vLista.length+1
                 this.vLista.push(prod)
-                return prod
             }
             else
             {
-                //throw new Error({'Error':prod});
-                return {}
+                throw new Error({"Error":"El producto ya existe"});
+                //return {}
             }
-
-    }
-    setLista(vec){
-        this.vLista=vec;
-        return vec
+        return prod
     }
     updateProducto(prod, id){
         try{

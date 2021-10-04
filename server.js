@@ -39,14 +39,14 @@ app.get('/productos/listar/:id', (req,res)=>{
     let id = params.id;
     let busq;
     archProductos.leer().then((productos_leidos)=>{
-
+/*
         try{
             busq= listaProd.getProducto(id)
         }
         catch{
             busq={}
         }
-        res.json(busq);
+        res.json(busq);*/
     })
 });
 
@@ -56,9 +56,8 @@ En el vector se carga la totalidad del archivo.
  actualizarArch() hace lo anteriormente mencionado. */
 
 async function actualizarLista(archivo, lista){
-    archivo.leer().then((registros_leidos)=>{
-        lista.setLista(archivo.vector) 
-})
+    let a = await archivo.leer()
+    lista.setLista(archivo.vector)
 }
 
 
@@ -66,9 +65,18 @@ app.post('/productos/agregar/',(req,res)=>{
     let prod = req.body;
     let incorporado;
     actualizarLista(archProductos,listaProd).then(()=>{
-        incorporado=listaProd.setProducto(prod)
-        archProductos.guardar(listaProd.getProductos())
-        res.json(incorporado)
+        try{
+            incorporado=listaProd.setProducto(prod)
+            archProductos.guardar(listaProd.getLista())            
+        }
+        catch(e){
+            console.log(e)
+            incorporado={};
+        }
+        finally{
+            res.json(incorporado)
+        }
+
     })
 })
 
