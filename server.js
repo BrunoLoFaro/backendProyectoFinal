@@ -22,33 +22,23 @@ app.use(express.urlencoded({extended: true}));
 app.use('/productos', routerProductos);
 app.use('/carritos', routerCarritos);
 
-routerProductos.get('/listar', (req,res)=>{
-    archProductos.leer().then((productos_leidos)=>{
-
-        /*let vProductos
-        try{
-            vProductos=listaProd.getProductos()
-        }
-        catch{
-            vProductos={}
-        }*/
-        res.json({productos_leidos})
-    })
-});
+let admin=false
 
 routerProductos.get('/listar/:id', (req,res)=>{
     let params = req.params;
     let id = params.id;
     let busq;
-    archProductos.leer().then((productos_leidos)=>{
-/*
+    actualizarLista(archProductos,listaProd).then(()=>{
         try{
-            busq= listaProd.getProducto(id)
+            busq=listaProd.getProducto(id)
         }
-        catch{
-            busq={}
+        catch(err){
+            console.log(err)
+            busq=err
         }
-        res.json(busq);*/
+        finally{
+            res.json(busq)
+        }
     })
 });
 
@@ -64,60 +54,74 @@ async function actualizarLista(archivo, lista){
 
 
 routerProductos.post('/agregar',(req,res)=>{
-    let prod = req.body;
-    let incorporado;
-//    try{
-        actualizarLista(archProductos,listaProd).then(()=>{
-            try{
-                incorporado=listaProd.setProducto(prod)
-                archProductos.guardar(listaProd.getLista())
-            }
-            catch(e){
-                console.log(e)
-                incorporado={}
-            }
-            finally{
-                res.json(incorporado)
-            }
-        })
-//   }
-//    catch(e){
-//    console.log(e)
-//    }
-
+    if (admin)
+    {
+            let prod = req.body;
+            let incorporado;
+        //    try{
+                actualizarLista(archProductos,listaProd).then(()=>{
+                    try{
+                        incorporado=listaProd.setProducto(prod)
+                        archProductos.guardar(listaProd.getLista())
+                    }
+                    catch(err){
+                        console.log(err)
+                        incorporado=err
+                    }
+                    finally{
+                        res.json(incorporado)
+                    }
+                })
+        //   }
+        //    catch(e){
+        //    console.log(e)
+        //    }   
+    }
+    else{
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+    }
 })
 
 routerProductos.put('/actualizar/:id/:titulo/:precio/:imagen', (req,res)=>{
-    let params = req.params;
-    let id = params.id;
-    let prod ={		
-        title: params.titulo,//por query los params vienen como string.
-        price: parseInt(params.precio),//tendría efecto si usaramos una bd.
-        thumbnail: params.imagen,
-        id: id, 
-    }
-    let actualizado
-    try{
-        listaProd.updateProducto(prod,id)
-        actualizado=listaProd.getProducto(id)
-    }
-    catch{
-        actualizado={}     
-    }
-
+    if (admin){
+        let params = req.params;
+        let id = params.id;
+        let prod ={		
+            title: params.titulo,//por query los params vienen como string.
+            price: parseInt(params.precio),//tendría efecto si usaramos una bd.
+            thumbnail: params.imagen,
+            id: id, 
+        }
+        let actualizado
+        try{
+            listaProd.updateProducto(prod,id)
+            actualizado=listaProd.getProducto(id)
+        }
+        catch{
+            actualizado={}     
+        }
     res.json({actualizado});
+    }
+    else{
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+    }
 });
 
 routerProductos.delete('/borrar/:id', (req,res)=>{
-    let params = req.params;
-    let id = params.id;
-    let eliminado
-    try{
-        listaProd.eliminateProducto(id)
-        eliminado=listaProd.getProducto(id)
+    if(admin){
+        let params = req.params;
+        let id = params.id;
+        let eliminado
+        try{
+            listaProd.eliminateProducto(id)
+            eliminado=listaProd.getProducto(id)
+        }
+        catch{
+            eliminado={}
+        }
+        res.json({eliminado});
     }
-    catch{
-        eliminado={}
+    else{
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
     }
-    res.json({eliminado});
 });

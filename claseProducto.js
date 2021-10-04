@@ -8,6 +8,9 @@ export class ListaProductos{
     }
     getProducto(codigo){
         let busq= this.vLista.find(x=>x.codigo==codigo)
+        if(busq===undefined)
+        throw new Error({'Error':"El producto no existe"});
+        else
         return busq
     }
     setLista(vec){
@@ -23,7 +26,7 @@ export class ListaProductos{
             }
             else
             {
-                throw new Error({'Error':"El produto ya existe"});
+                throw new Error({'Error':"El producto ya existe"});
                 //return {}
             }
         return prod
