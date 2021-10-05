@@ -135,10 +135,6 @@ routerProductos.delete('/borrar/:id', (req,res)=>{
 }
 });
 
-/* El programa consta de un vector "lista" y un archivo "archivo".
-En el vector se carga la totalidad del archivo.
- actualizarArch() hace lo anteriormente mencionado. */
-
 
 routerCarrito.get('/listar', (req,res)=>{
     let busq;
