@@ -13,7 +13,7 @@ let carrito1 = new Carrito(1,"timestamp",[])
 
 //server Express
 const app = express();
-const PORT = 8080;//process.env.PORT for GLITCH
+const PORT = process.env.PORT;//process.env.PORT for GLITCH
 const routerProductos = express.Router();
 const routerCarrito = express.Router();
 
