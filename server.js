@@ -177,14 +177,14 @@ routerCarrito.post('/agregar',(req,res)=>{
             //actualizo el vector de productos
             actualizarLista(archProductos,listaProd).then(()=>{
             //busco el producto
-                try{
+            /*    try{
                     busq=listaProd.getProducto(prod.id)
                 }
                 catch(err){
                     throw(err)
                 }
+            */
             }).then(()=>{
-                console.log("algo")
             actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
                 try{
                     incorporado=carrito1.listaProd.setProducto(prod)

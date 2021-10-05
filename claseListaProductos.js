@@ -6,8 +6,8 @@ export class ListaProductos{
     getLista(){
         return this.vLista
     }
-    getProducto(codigo){
-        let busq= this.vLista.find(x=>x.codigo==codigo)
+    getProducto(id){
+        let busq= this.vLista.find(x=>x.id==id)
         if(busq===undefined)
         throw new Error({'Error':"El producto no existe"});
         else
@@ -18,10 +18,11 @@ export class ListaProductos{
         return 1
     }
     setProducto(prod){
-        let index = this.vLista.find(e=>e.codigo==prod.codigo)
+        let index = this.vLista.find(e=>e.id==prod.id)
             if(index===undefined)
             {
-                prod['id']=this.vLista.length+1
+                let length = this.vLista.length
+                prod['id']=this.vLista[length-1].id+1
                 this.vLista.push(prod)
             }
             else
