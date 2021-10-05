@@ -5,6 +5,7 @@ import { ListaProductos,vLoteProductos, listaProd } from './claseProducto.js';
 import { ListaCarritos,vLoteCarritos, listaCrts } from './claseCarrito.js';
 
 let archProductos = new Archivo("productos.txt");
+let carrito1 = new Carrito()
 
 const app = express();
 const PORT = 8080;//process.env.PORT for GLITCH
@@ -126,6 +127,78 @@ routerProductos.delete('/borrar/:id', (req,res)=>{
 /* El programa consta de un vector "lista" y un archivo "archivo".
 En el vector se carga la totalidad del archivo.
  actualizarArch() hace lo anteriormente mencionado. */
+
+ routerProductos.get('/listar/:id', (req,res)=>{
+    let params = req.params;
+    let id = params.id;
+    let busq;
+    actualizarLista(archProductos,listaProd).then(()=>{
+        try{
+            busq=listaProd.getProducto(id)
+        }
+        catch(err){
+            console.log(err)
+            busq=err
+        }
+        finally{
+            res.json(busq)
+        }
+    })
+});
+
+
+routerProductos.post('/agregar',(req,res)=>{
+    if (admin)
+    {
+            let prod = req.body;
+            let incorporado;
+        //    try{
+                actualizarLista(archProductos,listaProd).then(()=>{
+                    try{
+                        incorporado=listaProd.setProducto(prod)
+                        archProductos.guardar(listaProd.getLista())
+                    }
+                    catch(err){
+                        console.log(err)
+                        incorporado=err
+                    }
+                    finally{
+                        res.json(incorporado)
+                    }
+                })
+        //   }
+        //    catch(e){
+        //    console.log(e)
+        //    }   
+    }
+    else{
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+    }
+})
+
+routerProductos.delete('/borrar/:id', (req,res)=>{
+    if(admin){
+            actualizarLista(archProductos,listaProd).then(()=>{
+            let params = req.params;
+            let id = params.id;
+            let eliminado
+            try{
+                eliminado=listaProd.getProducto(id)
+                listaProd.eliminateProducto(id)
+                archProductos.guardar(listaProd.getLista())
+            }
+            catch(err){
+                console.log(err)
+                eliminado=err
+            }
+            res.json({eliminado});
+        })
+    }
+    else{
+        res.json({Error:-1,descripcion:`ruta 'productos' metodo /eliminar no autorizada`});
+}
+});
+
 
  async function actualizarLista(archivo, lista){
     let a = await archivo.leer()
