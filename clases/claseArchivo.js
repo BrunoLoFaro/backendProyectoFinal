@@ -11,7 +11,7 @@ export class Archivo{
 
     async leer(mostrar=true){
         //try{
-            let lect = await fs.promises.readFile(this.nombre,'utf-8')
+            let lect = await fs.promises.readFile("data/" +this.nombre,'utf-8')
             this.vector=JSON.parse(lect)//guardo lo leido en el vector de la clase
             return 1
             //return mostrar? this.vector:0

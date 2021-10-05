@@ -1,15 +1,17 @@
+//imports
 import express from 'express';
 import path, { resolve } from 'path'
-import {Archivo} from './claseArchivo.js';
-import { ListaProductos,vLoteProductos} from './claseListaProductos.js';
-import { Carrito } from './claseCarrito.js';
+import {Archivo} from './clases/claseArchivo.js';
+import { ListaProductos,vLoteProductos} from './clases/claseListaProductos.js';
+import { Carrito } from './clases/claseCarrito.js';
 
+//instancias de las clases
 let archProductos = new Archivo("productos.txt");
 let archCarrito = new Archivo("carrito.txt");
-
 let listaProd = new ListaProductos(vLoteProductos)
 let carrito1 = new Carrito(1,"timestamp",[])
 
+//server Express
 const app = express();
 const PORT = 8080;//process.env.PORT for GLITCH
 const routerProductos = express.Router();
@@ -21,13 +23,19 @@ const server = app.listen(PORT, ()=>{
 });
 server.on('error', error=>console.log('Error en servidor', error));
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+//rutas
 app.use('/productos', routerProductos);
 app.use('/carrito', routerCarrito);
 
 let admin=true
 
+
+
+//Métodos HTTP
 routerProductos.get('/listar/:id', (req,res)=>{
     let params = req.params;
     let id = params.id;
