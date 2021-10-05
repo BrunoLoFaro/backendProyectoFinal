@@ -132,6 +132,22 @@ En el vector se carga la totalidad del archivo.
  actualizarArch() hace lo anteriormente mencionado. */
 
 
+routerCarrito.get('/listar', (req,res)=>{
+    let busq;
+    actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
+        try{
+            busq=carrito1.listaProd.getLista()
+        }
+        catch(err){
+            console.log(err)
+            busq=err
+        }
+        finally{
+            res.json(busq)
+        }
+    })
+});
+
 routerCarrito.get('/listar/:id', (req,res)=>{
     let params = req.params;
     let id = params.id;
@@ -149,7 +165,6 @@ routerCarrito.get('/listar/:id', (req,res)=>{
         }
     })
 });
-
 
 routerCarrito.post('/agregar',(req,res)=>{
     if (admin)
