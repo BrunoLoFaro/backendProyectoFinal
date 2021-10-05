@@ -90,6 +90,6 @@ let vLoteProductos =
         stock:"434",
 	}
 ]
-let listaProd = new ListaProductos(vLoteProductos)
 
-export {vLoteProductos, listaProd}
+
+export {vLoteProductos}

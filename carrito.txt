@@ -1,0 +1,32 @@
+[
+	{
+		"id": 3,
+		"timestamp": "",
+		"nombre": "",
+		"descripcion": "",
+		"codigo": "3dadasd2adasa3a",
+		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
+		"precio": "434",
+		"stock": "434"
+	},
+	{
+		"id": 4,
+		"timestamp": "",
+		"nombre": "",
+		"descripcion": "",
+		"codigo": "3000003a",
+		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
+		"precio": "434",
+		"stock": "434"
+	},
+	{
+		"id": 3,
+		"timestamp": "",
+		"nombre": "reloj",
+		"descripcion": "",
+		"codigo": "1",
+		"foto": "https://w7.pngwing.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "434",
+		"stock": "434"
+	}
+]

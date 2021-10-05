@@ -1,16 +1,19 @@
 import express from 'express';
-import path from 'path'
+import path, { resolve } from 'path'
 import {Archivo} from './claseArchivo.js';
-import { ListaProductos,vLoteProductos, listaProd } from './claseProducto.js';
-import { ListaCarritos,vLoteCarritos, listaCrts } from './claseCarrito.js';
+import { ListaProductos,vLoteProductos} from './claseListaProductos.js';
+import { Carrito } from './claseCarrito.js';
 
 let archProductos = new Archivo("productos.txt");
-let carrito1 = new Carrito()
+let archCarrito = new Archivo("carrito.txt");
+
+let listaProd = new ListaProductos(vLoteProductos)
+let carrito1 = new Carrito(1,"timestamp",[])
 
 const app = express();
 const PORT = 8080;//process.env.PORT for GLITCH
 const routerProductos = express.Router();
-const routerCarritos = express.Router();
+const routerCarrito = express.Router();
 
 const server = app.listen(PORT, ()=>{
     console.log('Servidor HTTP escuchando en el puerto', server.address().port);
@@ -21,7 +24,7 @@ server.on('error', error=>console.log('Error en servidor', error));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/productos', routerProductos);
-app.use('/carritos', routerCarritos);
+app.use('/carrito', routerCarrito);
 
 let admin=true
 
@@ -128,13 +131,14 @@ routerProductos.delete('/borrar/:id', (req,res)=>{
 En el vector se carga la totalidad del archivo.
  actualizarArch() hace lo anteriormente mencionado. */
 
- routerProductos.get('/listar/:id', (req,res)=>{
+
+routerCarrito.get('/listar/:id', (req,res)=>{
     let params = req.params;
     let id = params.id;
     let busq;
-    actualizarLista(archProductos,listaProd).then(()=>{
+    actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
         try{
-            busq=listaProd.getProducto(id)
+            busq=carrito1.listaProd.getProducto(id)
         }
         catch(err){
             console.log(err)
@@ -147,45 +151,60 @@ En el vector se carga la totalidad del archivo.
 });
 
 
-routerProductos.post('/agregar',(req,res)=>{
+routerCarrito.post('/agregar',(req,res)=>{
     if (admin)
     {
             let prod = req.body;
             let incorporado;
-        //    try{
-                actualizarLista(archProductos,listaProd).then(()=>{
-                    try{
-                        incorporado=listaProd.setProducto(prod)
-                        archProductos.guardar(listaProd.getLista())
-                    }
-                    catch(err){
-                        console.log(err)
-                        incorporado=err
-                    }
-                    finally{
-                        res.json(incorporado)
-                    }
-                })
-        //   }
-        //    catch(e){
-        //    console.log(e)
-        //    }   
+            let busq
+        try{
+
+            //actualizo el vector de productos
+            actualizarLista(archProductos,listaProd).then(()=>{
+            //busco el producto
+                try{
+                    busq=listaProd.getProducto(prod.id)
+                }
+                catch(err){
+                    throw(err)
+                }
+            }).then(()=>{
+                console.log("algo")
+            actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
+                try{
+                    incorporado=carrito1.listaProd.setProducto(prod)
+                    archCarrito.guardar(carrito1.listaProd.getLista())
+                }
+                catch(err){
+                    console.log(err)
+                    incorporado=err
+                }
+                finally{
+                    res.json(incorporado)
+                }
+            })
+        })
+        }
+        catch(err)
+        {
+            console.log(err)
+        }
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+        res.json({Error:-1,descripcion:`ruta 'Carrito' metodo /agregar no autorizada`});
     }
 })
 
-routerProductos.delete('/borrar/:id', (req,res)=>{
+routerCarrito.delete('/borrar/:id', (req,res)=>{
     if(admin){
-            actualizarLista(archProductos,listaProd).then(()=>{
+            actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
             let params = req.params;
             let id = params.id;
             let eliminado
             try{
-                eliminado=listaProd.getProducto(id)
-                listaProd.eliminateProducto(id)
-                archProductos.guardar(listaProd.getLista())
+                eliminado=carrito1.listaProd.getProducto(id)
+                carrito1.listaProd.eliminateProducto(id)
+                archCarrito.guardar(carrito1.listaProd.getLista())
             }
             catch(err){
                 console.log(err)
@@ -195,7 +214,7 @@ routerProductos.delete('/borrar/:id', (req,res)=>{
         })
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /eliminar no autorizada`});
+        res.json({Error:-1,descripcion:`ruta 'Carrito' metodo /eliminar no autorizada`});
 }
 });
 
