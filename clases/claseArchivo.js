@@ -28,10 +28,10 @@ export class Archivo{
                 obj['id']=this.vector.length+1
                 this.vector.push(obj)*/
                 this.vector=obj;
-                await fs.promises.writeFile(this.nombre,JSON.stringify(this.vector, null, '\t')) 
+                await fs.promises.writeFile("data/" +this.nombre,JSON.stringify(this.vector, null, '\t')) 
             }
     async borrar(){
-        return await fs.promises.unlink(this.nombre,(e)=>console.log(e+"e"))
+        return await fs.promises.unlink("data/" +this.nombre,(e)=>console.log(e+"e"))
     }
 }
 

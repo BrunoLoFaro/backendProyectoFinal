@@ -48,5 +48,45 @@
 		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
 		"precio": "434",
 		"stock": "434"
+	},
+	{
+		"id": 6,
+		"timestamp": 1633464809313,
+		"nombre": "guitarra",
+		"descripcion": "flying v",
+		"codigo": "04303",
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "994563",
+		"stock": "2"
+	},
+	{
+		"id": 7,
+		"timestamp": 1633464811217,
+		"nombre": "guitarra",
+		"descripcion": "flying v",
+		"codigo": "04303",
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "994563",
+		"stock": "2"
+	},
+	{
+		"id": 8,
+		"timestamp": 1633464812808,
+		"nombre": "guitarra",
+		"descripcion": "flying v",
+		"codigo": "04303",
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "994563",
+		"stock": "2"
+	},
+	{
+		"id": 9,
+		"timestamp": 1633465069303,
+		"nombre": "bateria",
+		"descripcion": "tama",
+		"codigo": "043032",
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "994563",
+		"stock": "2"
 	}
 ]

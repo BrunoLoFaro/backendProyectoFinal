@@ -58,11 +58,13 @@ routerProductos.get('/listar/:id', (req,res)=>{
 routerProductos.post('/agregar',(req,res)=>{
     if (admin)
     {
+            let date = Date.now()
             let prod = req.body;
             let incorporado;
         //    try{
                 actualizarLista(archProductos,listaProd).then(()=>{
                     try{
+                        prod.timestamp=date
                         incorporado=listaProd.setProducto(prod)
                         archProductos.guardar(listaProd.getLista())
                     }
