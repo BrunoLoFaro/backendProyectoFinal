@@ -18,7 +18,7 @@ export class ListaProductos{
         return 1
     }
     setProducto(prod){
-        let index = this.vLista.find(e=>e.id==prod.id)
+        let index = this.vLista.find(e=>e.codigo==prod.codigo)
             if(index===undefined)
             {
                 let length = this.vLista.length

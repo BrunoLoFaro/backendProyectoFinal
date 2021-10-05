@@ -58,11 +58,13 @@ routerProductos.get('/listar/:id', (req,res)=>{
 routerProductos.post('/agregar',(req,res)=>{
     if (admin)
     {
+            let date = Date.now()
             let prod = req.body;
             let incorporado;
         //    try{
                 actualizarLista(archProductos,listaProd).then(()=>{
                     try{
+                        prod.timestamp=date
                         incorporado=listaProd.setProducto(prod)
                         archProductos.guardar(listaProd.getLista())
                     }
@@ -134,10 +136,6 @@ routerProductos.delete('/borrar/:id', (req,res)=>{
         res.json({Error:-1,descripcion:`ruta 'productos' metodo /eliminar no autorizada`});
 }
 });
-
-/* El programa consta de un vector "lista" y un archivo "archivo".
-En el vector se carga la totalidad del archivo.
- actualizarArch() hace lo anteriormente mencionado. */
 
 
 routerCarrito.get('/listar', (req,res)=>{

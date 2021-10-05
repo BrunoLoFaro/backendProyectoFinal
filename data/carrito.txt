@@ -28,5 +28,15 @@
 		"foto": "https://w7.pepeelcarpintero.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
 		"precio": "434",
 		"stock": "434"
+	},
+	{
+		"id": 6,
+		"timestamp": "",
+		"nombre": "guitarra",
+		"descripcion": "flying v",
+		"codigo": "0303",
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "994563",
+		"stock": "2"
 	}
 ]
