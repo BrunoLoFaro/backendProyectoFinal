@@ -6,10 +6,17 @@ export class ListaProductos{
     getLista(){
         return this.vLista
     }
-    getProducto(id){
+    getProductoById(id){
         let busq= this.vLista.find(x=>x.id==id)
         if(busq===undefined)
-        throw new Error({'Error':"El producto no existe"});
+        throw {'Error':"El producto no existe"};
+        else
+        return busq
+    }
+    getProductoByCode(codigo){
+        let busq= this.vLista.find(x=>x.codigo==codigo)
+        if(busq===undefined)
+        throw {'Error':"El producto no existe"};
         else
         return busq
     }
@@ -21,8 +28,14 @@ export class ListaProductos{
         let index = this.vLista.find(e=>e.codigo==prod.codigo)
             if(index===undefined)
             {
-                let length = this.vLista.length
-                prod['id']=this.vLista[length-1].id+1
+                if(this.vLista.length===0){
+                    prod['id']=0
+                }
+                else{
+                    let length = this.vLista.length
+                    prod['id']=this.vLista[length-1].id+1
+                }
+
                 this.vLista.push(prod)
             }
             else
@@ -34,7 +47,7 @@ export class ListaProductos{
     }
     updateProducto(prod){
         try{
-            let index = this.vLista.findIndex(x=>x.id==prod.id)
+            let index = this.vLista.findIndex(x=>x.codigo==prod.codigo)
             this.vLista[index]=prod
             return this.vLista[index]
         }
@@ -42,14 +55,14 @@ export class ListaProductos{
             throw new Error({'Error':"El producto no existe"});
         }
     }
-    eliminateProducto(id){
+    eliminateProducto(codgio){
         try{
-            let index = this.vLista.findIndex(x=>x.id==id)
+            let index = this.vLista.findIndex(x=>x.codigo==codigo)
             //shallow copy. El objeto se borra con splice y una referencia no me sirve. 
             var auxEliminado = JSON.parse(JSON.stringify(this.vLista[index]));
             this.vLista.splice(index,1)
             for(let i=index;i<this.vLista.length;i++)
-            this.vLista[i].id--
+            this.vLista[i].codigo--
         }
         catch(err){
             console.log(err)

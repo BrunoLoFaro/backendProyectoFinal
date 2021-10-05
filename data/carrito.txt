@@ -1,42 +1,12 @@
 [
 	{
-		"id": 3,
-		"timestamp": "",
-		"nombre": "",
-		"descripcion": "",
-		"codigo": "3dadasd2adasa3a",
-		"foto": "https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png",
-		"precio": "434",
-		"stock": "434"
-	},
-	{
-		"id": 4,
-		"timestamp": "",
-		"nombre": "reloj",
-		"descripcion": "",
-		"codigo": "1212",
-		"foto": "https://w7.pngwing.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
-		"precio": "434",
-		"stock": "434"
-	},
-	{
-		"id": 5,
-		"timestamp": "",
-		"nombre": "pepe",
-		"descripcion": "carpintero",
-		"codigo": "1414",
-		"foto": "https://w7.pepeelcarpintero.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
-		"precio": "434",
-		"stock": "434"
-	},
-	{
-		"id": 6,
+		"id": 0,
 		"timestamp": "",
 		"nombre": "guitarra",
-		"descripcion": "flying v",
-		"codigo": "0303",
-		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
-		"precio": "994563",
-		"stock": "2"
+		"descripcion": "flying V",
+		"codigo": "12AB",
+		"foto": "https://w7.guitar.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "2242",
+		"stock": "3"
 	}
 ]
