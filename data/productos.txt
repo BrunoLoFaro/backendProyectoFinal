@@ -1,7 +1,7 @@
 [
 	{
 		"id": 1,
-		"timestamp": "",
+		"timestamp": "1633480188134",
 		"nombre": "reloj",
 		"descripcion": "",
 		"codigo": "1C",
@@ -11,7 +11,7 @@
 	},
 	{
 		"id": 2,
-		"timestamp": "",
+		"timestamp": "1633480188235",
 		"nombre": "auriculares",
 		"descripcion": "inalambricos",
 		"codigo": "2AAS",

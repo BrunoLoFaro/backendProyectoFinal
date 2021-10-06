@@ -1,7 +1,7 @@
 [
 	{
 		"id": 0,
-		"timestamp": "",
+		"timestamp": "16334801881",
 		"nombre": "guitarra",
 		"descripcion": "flying V",
 		"codigo": "12AB",
@@ -11,7 +11,7 @@
 	},
 	{
 		"id": 1,
-		"timestamp": "",
+		"timestamp": "16334801888",
 		"nombre": "auriculares",
 		"descripcion": "inalambricos",
 		"codigo": "2AAS",
