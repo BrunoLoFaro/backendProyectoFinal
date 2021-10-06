@@ -58,7 +58,7 @@ export class ListaProductos{
         try{
             let index = this.vLista.findIndex(x=>x.codigo==codigo)
             //shallow copy. El objeto se borra con splice y una referencia no me sirve. 
-            var auxEliminado = JSON.parse(JSON.stringify(this.vLista[index]));
+            var auxEliminado = this.vLista[index];
             this.vLista.splice(index,1)
             if(this.vLista.length>0)
             {

@@ -1,5 +1,9 @@
-import { Carrito } from './models/claseCarrito.js';
-import {Archivo} from './models/claseArchivo.js';
+import { Carrito } from '../models/claseCarrito.js';
+import { listaProd, archProductos } from './productos.controller.js';
+import {Archivo} from '../models/claseArchivo.js';
+
+let carrito1 = new Carrito(1,"timestamp",[])
+let archCarrito = new Archivo("../data/carrito.txt");
 
 export const getCarrito = (req,res, next)=>{
     try{
@@ -19,7 +23,7 @@ export const getCarrito = (req,res, next)=>{
         next(err)
     }
 };
-    
+    //get producto del carrito
 export const getCarrito_Codigo = (req,res, next)=>{
     try{
     let params = req.params;

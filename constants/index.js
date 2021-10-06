@@ -1,1 +1,1 @@
-const isAdmin=true
+export const admin=true

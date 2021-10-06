@@ -11,8 +11,8 @@ import {
 export const productosRouter = Router()
 
 productosRouter
-    .get("/listar", getProductos)
-    .get("/listar/:codigo", getProductos)
-    .post("/agregar", getProductos)
-    .put("/actualizar", getProductos)
-    .delete("/borrar/:codigo", getProductos);
+    .get("/listar", getProducto)
+    .get("/listar/:codigo", getProducto_Codigo)
+    .post("/agregar", postProducto)
+    .put("/actualizar", putProducto)
+    .delete("/borrar/:codigo", deleteProducto);

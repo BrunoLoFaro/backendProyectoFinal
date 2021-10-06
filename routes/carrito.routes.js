@@ -4,7 +4,6 @@ import {
     getCarrito,
     getCarrito_Codigo,
     postCarrito,
-    putCarrito,
     deleteCarrito,
 } from "../controllers/carrito.controller.js"
 
@@ -12,7 +11,6 @@ export const carritoRouter = Router()
 
 carritoRouter
     .get("/listar", getCarrito)
-    .get("/listar/:codigo", getCarrito)
-    .post("/agregar", getCarrito)
-    .put("/actualizar", getCarrito)
-    .delete("/borrar/:codigo", getCarrito);
+    .get("/listar/:codigo", getCarrito_Codigo)
+    .post("/agregar/:codigo", postCarrito)
+    .delete("/borrar/:codigo", deleteCarrito);

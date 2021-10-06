@@ -1,7 +1,9 @@
-import {ListaProductos, vLoteProductos} from "../claseListaProductos.js"
-import {Archivo} from './models/claseArchivo.js';
+import {ListaProductos, vLoteProductos} from "../models/claseListaProductos.js"
+import {Archivo} from '../models/claseArchivo.js';
+import {admin} from "../constants/index.js"
 
-let listaProd = new ListaProductos(vLoteProductos)
+export let listaProd = new ListaProductos(vLoteProductos)
+export let archProductos = new Archivo("../data/productos.txt")
 
 export const getProducto = (req,res, next)=>{
     try{
@@ -46,9 +48,9 @@ export const getProducto_Codigo = (req,res, next)=>{
 
 
 export const postProducto = (req,res,next)=>{
-try{
-    if (admin)
-    {
+if (admin)
+{
+    try{
             let date = Date.now()
             let prod = req.body;
             let incorporado;
@@ -60,18 +62,20 @@ try{
                         res.json(incorporado)
                     }
                     catch(err){
+                        console.log("post  !!! "+err)
                         next(err)
                     }
                 }) 
     }
-    else{
-        throw new Error({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+    catch(err)
+    {
+        next(err)
     }
 }
-catch(err)
-{
-    next(err)
+else{
+    throw new Error({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
 }
+
 };
 
 export const putProducto =  (req,res,next)=>{
@@ -128,3 +132,7 @@ catch(err)
 }
 };
 
+async function actualizarLista(archivo, lista){
+    let a = await archivo.leer()
+    lista.setLista(archivo.vector)
+}

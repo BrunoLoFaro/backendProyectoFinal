@@ -18,5 +18,15 @@
 		"foto": "https://w7.auriculares.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
 		"precio": "1000",
 		"stock": "12"
+	},
+	{
+		"id": 3,
+		"timestamp": 1633538727670,
+		"nombre": "bateria",
+		"descripcion": "tama",
+		"codigo": "043032",
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "994563",
+		"stock": "2"
 	}
 ]
