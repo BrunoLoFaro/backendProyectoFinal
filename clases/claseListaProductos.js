@@ -41,7 +41,6 @@ export class ListaProductos{
             else
             {
                 throw new Error({'Error':"El producto ya existe"});
-                //return {}
             }
         return prod
     }
@@ -55,17 +54,20 @@ export class ListaProductos{
             throw new Error({'Error':"El producto no existe"});
         }
     }
-    eliminateProducto(codgio){
+    eliminateProducto(codigo){
         try{
             let index = this.vLista.findIndex(x=>x.codigo==codigo)
             //shallow copy. El objeto se borra con splice y una referencia no me sirve. 
             var auxEliminado = JSON.parse(JSON.stringify(this.vLista[index]));
             this.vLista.splice(index,1)
-            for(let i=index;i<this.vLista.length;i++)
-            this.vLista[i].codigo--
+            if(this.vLista.length>0)
+            {
+                for(let i=index;i<this.vLista.length;i++)
+                this.vLista[i].id--
+            }
         }
         catch(err){
-            console.log(err)
+            throw new Error({'Error':"El producto no existe"});
         }
         return auxEliminado
     }

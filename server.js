@@ -101,7 +101,7 @@ try{
                 }) 
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
+        throw new Error({Error:-1,descripcion:`ruta 'productos' metodo /agregar no autorizada`});
     }
 }
 catch(err)
@@ -122,12 +122,12 @@ try{
                     res.json(actualizado)                    
                 }
                 catch(err){
-                    next()
+                    next(err)
                 }
             })  
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /actualizar no autorizada`});
+        throw new Error({Error:-1,descripcion:`ruta 'productos' metodo /actualizar no autorizada`});
     }
 }
 catch(err)
@@ -138,7 +138,6 @@ catch(err)
 
 routerProductos.delete('/borrar/:codigo', (req,res,next)=>{
 try{
-    
     if(admin){
             actualizarLista(archProductos,listaProd).then(()=>{
             let params = req.params;
@@ -156,7 +155,7 @@ try{
         })
     }
     else{
-        res.json({Error:-1,descripcion:`ruta 'productos' metodo /eliminar no autorizada`});
+        throw new Error({Error:-1,descripcion:`ruta 'productos' metodo /eliminar no autorizada`});
     }
 }
 catch(err)
@@ -208,13 +207,9 @@ catch(err)
 
 routerCarrito.post('/agregar/:codigo',(req,res, next)=>{
     try{
-
-    if (admin)
-    {
         let params = req.params;
         let codigo = params.codigo;
         let busq
-        try{
                 //actualizo el vector de productos
                 actualizarLista(archProductos,listaProd).then(()=>{
                 //busco el producto
@@ -222,7 +217,7 @@ routerCarrito.post('/agregar/:codigo',(req,res, next)=>{
                         busq=listaProd.getProductoByCode(codigo)
                     }
                     catch(err){
-                        next()
+                        next(err)
                     }
                 }).then(()=>{
                 actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
@@ -233,29 +228,19 @@ routerCarrito.post('/agregar/:codigo',(req,res, next)=>{
                         res.json(incorporado)
                     }
                     catch(err){
-                        next()
+                        next(err)
                     }
                 })
             })
         }
         catch(err)
         {
-            console.log("prod inexistente")
+            next(err)
         }
-    }
-    else{
-        res.json({Error:-1,descripcion:`ruta 'Carrito' metodo /agregar no autorizada`});
-    }
-}
-catch(err)
-{
-    next(err)
-}
 })
 
 routerCarrito.delete('/borrar/:codigo', (req,res, next)=>{
     try{
-    if(admin){
             actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
             let params = req.params;
             let codigo = params.codigo;
@@ -267,13 +252,9 @@ routerCarrito.delete('/borrar/:codigo', (req,res, next)=>{
                 res.json({eliminado});
             }
             catch(err){
-                next()
+                next(err)
             }
         })
-    }
-    else{
-        res.json({Error:-1,descripcion:`ruta 'Carrito' metodo /eliminar no autorizada`});
-    }
     }
     catch(err)
     {

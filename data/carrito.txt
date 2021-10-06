@@ -8,5 +8,15 @@
 		"foto": "https://w7.guitar.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
 		"precio": "2242",
 		"stock": "3"
+	},
+	{
+		"id": 1,
+		"timestamp": "",
+		"nombre": "auriculares",
+		"descripcion": "inalambricos",
+		"codigo": "2AAS",
+		"foto": "https://w7.auriculares.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "1000",
+		"stock": "12"
 	}
 ]
