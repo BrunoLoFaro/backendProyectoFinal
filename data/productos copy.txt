@@ -10,7 +10,17 @@
 		"stock": "434"
 	},
 	{
-		"id": 2,
+        "id": 2,
+        "timestamp": "",
+        "nombre": "guitarra",
+        "descripcion": "flying V",
+        "codigo": "12AB",
+        "foto": "https://w7.guitar.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+        "precio": "2242",
+        "stock": "3"
+    },
+	{
+		"id": 3,
 		"timestamp": "",
 		"nombre": "auriculares",
 		"descripcion": "inalambricos",
