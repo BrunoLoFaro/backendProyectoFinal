@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "b94814de-d717-4b0c-a671-2bc47c1d6908",
+		"name": "GLITCH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "agregar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 2,\r\n        \"timestamp\": 1633480324195,\r\n        \"nombre\": \"globo terraqueo\",\r\n        \"descripcion\": \"adorno\",\r\n        \"codigo\": \"AAM3\",\r\n        \"foto\": \"https://e7.globoterraqueo.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png\",\r\n        \"precio\": \"356\",\r\n        \"stock\": \"130\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/productos/agregar/",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"productos",
+								"agregar",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/productos/listar",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"productos",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\":2,\r\n   \"timestamp\":\"\",\r\n   \"nombre\":\"\",\r\n   \"descripcion\":\"\",\r\n   \"codigo\":\"30sds00003a\",\r\n   \"foto\":\"https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png\",\r\n   \"precio\":\"434\",\r\n   \"stock\":\"434\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/productos/borrar/2AAS",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"productos",
+								"borrar",
+								"2AAS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/listar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"listar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "agregar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/carrito/agregar/AAM3",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"carrito",
+								"agregar",
+								"AAM3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/carrito/listar",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"carrito",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\":2,\r\n   \"timestamp\":\"\",\r\n   \"nombre\":\"\",\r\n   \"descripcion\":\"\",\r\n   \"codigo\":\"30sds00003a\",\r\n   \"foto\":\"https://e7.pngegg.com/pngimages/764/942/png-clipart-alarm-clocks-watch-manecilla-clock-alarm-clocks-watch.png\",\r\n   \"precio\":\"434\",\r\n   \"stock\":\"434\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/carrito/borrar/4",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"carrito",
+								"borrar",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://like-proud-onyx.glitch.me/carrito/listar/1",
+							"protocol": "https",
+							"host": [
+								"like-proud-onyx",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"carrito",
+								"listar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
