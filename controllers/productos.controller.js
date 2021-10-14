@@ -31,7 +31,7 @@ export const getProducto_Codigo = (req,res, next)=>{
         let busq;
         actualizarLista(archProductos,listaProd).then(()=>{
             try{
-                busq=listaProd.getProductoByIds(id)
+                busq=listaProd.getProductoById(id)
                 res.json(busq)
             }
             catch(err){
@@ -62,7 +62,6 @@ if (admin)
                         res.json(incorporado)
                     }
                     catch(err){
-                        console.log("post  !!! "+err)
                         next(err)
                     }
                 }) 
@@ -109,11 +108,11 @@ try{
     if(admin){
             actualizarLista(archProductos,listaProd).then(()=>{
             let params = req.params;
-            let codigo = params.codigo;
+            let id = params.id;
             let eliminado
             try{
-                eliminado=listaProd.getProductoByCode(codigo)
-                listaProd.eliminateProducto(codigo)
+                eliminado=listaProd.getProductoByCode(id)
+                listaProd.eliminateProducto(id)
                 archProductos.guardar(listaProd.getLista())
                 res.json({eliminado});
             }

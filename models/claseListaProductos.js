@@ -33,7 +33,7 @@ export class ListaProductos{
                 }
                 else{
                     let length = this.vLista.length
-                    prod['codigo']=this.vLista[length-1].id+1
+                    prod['codigo']=this.vLista[length-1].codigo+1
                 }
 
                 this.vLista.push(prod)
@@ -46,7 +46,7 @@ export class ListaProductos{
     }
     updateProducto(prod){
         try{
-            let index = this.vLista.findIndex(x=>x.codigo==prod.codigo)
+            let index = this.vLista.findIndex(x=>x.id==prod.id)
             this.vLista[index]=prod
             return this.vLista[index]
         }
@@ -54,9 +54,9 @@ export class ListaProductos{
             throw new Error({'Error':"El producto no existe"});
         }
     }
-    eliminateProducto(codigo){
+    eliminateProducto(id){
         try{
-            let index = this.vLista.findIndex(x=>x.codigo==codigo)
+            let index = this.vLista.findIndex(x=>x.id==id)
             //shallow copy. El objeto se borra con splice y una referencia no me sirve. 
             var auxEliminado = this.vLista[index];
             this.vLista.splice(index,1)
