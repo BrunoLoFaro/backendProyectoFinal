@@ -27,11 +27,11 @@ export const getProducto = (req,res, next)=>{
 export const getProducto_Codigo = (req,res, next)=>{
     try{
         let params = req.params;
-        let codigo = params.codigo;
+        let codigo = params.id;
         let busq;
         actualizarLista(archProductos,listaProd).then(()=>{
             try{
-                busq=listaProd.getProductoByCode(codigo)
+                busq=listaProd.getProductoByIds(id)
                 res.json(busq)
             }
             catch(err){

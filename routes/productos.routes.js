@@ -12,7 +12,7 @@ export const productosRouter = Router()
 
 productosRouter
     .get("/listar", getProducto)
-    .get("/listar/:codigo", getProducto_Codigo)
+    .get("/listar/:id", getProducto_Codigo)
     .post("/agregar", postProducto)
     .put("/actualizar", putProducto)
-    .delete("/borrar/:codigo", deleteProducto);
+    .delete("/borrar/:id", deleteProducto);

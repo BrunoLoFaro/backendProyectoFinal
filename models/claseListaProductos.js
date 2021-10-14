@@ -29,11 +29,11 @@ export class ListaProductos{
             if(index===undefined)
             {
                 if(this.vLista.length===0){
-                    prod['id']=0
+                    prod['codigo']=0
                 }
                 else{
                     let length = this.vLista.length
-                    prod['id']=this.vLista[length-1].id+1
+                    prod['codigo']=this.vLista[length-1].id+1
                 }
 
                 this.vLista.push(prod)

@@ -24,14 +24,14 @@ export const getCarrito = (req,res, next)=>{
     }
 };
     //get producto del carrito
-export const getCarrito_Codigo = (req,res, next)=>{
+export const getCarrito_Id = (req,res, next)=>{
     try{
     let params = req.params;
-    let codigo = params.codigo;
+    let id = params.coiddigo;
     let busq;
     actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
         try{
-            busq=carrito1.listaProd.getProductoByCode(codigo)
+            busq=carrito1.listaProd.getProductoById(id)
             res.json(busq)
         }
         catch(err){
@@ -48,13 +48,13 @@ catch(err)
 export const postCarrito = (req,res, next)=>{
     try{
         let params = req.params;
-        let codigo = params.codigo;
+        let id = params.id;
         let busq
                 //actualizo el vector de productos
                 actualizarLista(archProductos,listaProd).then(()=>{
                 //busco el producto
                     try{
-                        busq=listaProd.getProductoByCode(codigo)
+                        busq=listaProd.getProductoByCode(id)
                     }
                     catch(err){
                         next(err)
@@ -83,11 +83,11 @@ export const deleteCarrito = (req,res, next)=>{
     try{
             actualizarLista(archCarrito,carrito1.listaProd).then(()=>{
             let params = req.params;
-            let codigo = params.codigo;
+            let id = params.id;
             let eliminado
             try{
-                eliminado=carrito1.listaProd.getProductoByCode(codigo)
-                carrito1.listaProd.eliminateProducto(codigo)
+                eliminado=carrito1.listaProd.getProductoByCode(id)
+                carrito1.listaProd.eliminateProducto(id)
                 archCarrito.guardar(carrito1.listaProd.getLista())
                 res.json({eliminado});
             }
