@@ -3,8 +3,7 @@ import * as productoModel from '../models/producto.model.js'
 import * as mensajeModel from '../models/carrito.model.js'
 
 const f = new persistenceFactory();
-const persistence = f.create(4)
-
+const persistence = f.create(5)
 
 export const getProducto = (req,res, next)=>{
     try{
@@ -53,15 +52,15 @@ export const deleteProducto = (req,res,next)=>{
 export const postProducto = (req,res,next)=>{
     //if (admin)
         try{
-                //let prod = req.body;
-                let prod =     {
+                let prod = req.body;
+                /*let prod =     {
                     nombre: "Dan Brown - La fortaleza digital",
                     precio: 434,
                     foto: "https://bibliotecaquijote.files.wordpress.com/2012/02/la-fortaleza-digital.jpg",
                     descripcion:"bestseller thriller",
                     codigo:"AS4224",        
                     id: 2
-                }
+                }*/
                 persistence.Create(productoModel.productos, prod);
         }
         catch(err)

@@ -41,19 +41,17 @@ function Read_find(model,id){
   return model.find({ id : 2 }).then((found_data)=>console.log(found_data))//ex. productoModel
 }
 function Update(model,qry){
-  console.log(qry[0],qry[1])
-    model.update(qry[0],qry[1])
+  model.update(qry[0],qry[1])
     .then((e)=>{
       console.log(e)
   })
 }
 function Delete(model, qry){
-  console.log(qry)
   try{
     model.deleteOne(qry)
     .then((e)=>console.log(e))
   }
-catch(err){
-  console.log(err)
-}
+  catch(err){
+    console.log(err)
+  }
 }

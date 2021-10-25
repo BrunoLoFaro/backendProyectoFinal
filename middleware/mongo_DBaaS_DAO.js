@@ -1,22 +1,20 @@
 import {persistencia_default} from './persistencia_default.js';
-//import * as productoModel from './models/producto.model.js'
-//import * as mensajeModel from './models/carrito.model.js'
 import mongoose from 'mongoose'
 
 export class MongoDB_DBaaS extends persistencia_default{
   constructor () {
-    super('Fs', Connect, Create, Read, Update, Delete)
+    super('MongoDB_DBaaS', Connect, Create, Read, Read_find, Update, Delete)
   }
 }
 
 async function Connect (){
     try {
-        const URI = 'mongodb://localhost:27017/ecommerce';
+        const URI = "mongodb+srv://Bruno:mongoTest.123@cluster0.uinz0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
         await mongoose.connect(URI, 
             { 
               useNewUrlParser: true,
               useUnifiedTopology: true,
-              serverSelectionTimeoutMS: 1000
+              serverSelectionTimeoutMS: 5000
             })    
         console.log('Conectado a la base de datos...');
         }
@@ -25,16 +23,10 @@ async function Connect (){
         ///throw `Error: ${error}`;
     }
 }
-async function Create (){
+async function Create (model, obj){
   try {
-      const URI = 'mongodb://localhost:27017/ecommerce';
-      await mongoose.connect(URI, 
-          { 
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            serverSelectionTimeoutMS: 1000
-          })    
-      console.log('Conectado a la base de datos...');
+    const SaveModel = new model(obj)
+    SaveModel.save()
       }
   catch(error) {
       console.log("db not running")
@@ -43,12 +35,23 @@ async function Create (){
 }
 
 function Read(model){
-  return model.mensajes.find({}).then((found_data))//ex. productoModel
+  return model.find({}).then((found_data)=>console.log(found_data))//ex. productoModel
 }
-function Update(model, coll){
-  const SaveModel = new model.productos(coll)
-  SaveModel.save()
+function Read_find(model,id){
+  return model.find({ id : 2 }).then((found_data)=>console.log(found_data))//ex. productoModel
 }
-function Delete(model, coll, qry){
-  model.coll.deleteMany(qry)
+function Update(model,qry){
+  model.update(qry[0],qry[1])
+    .then((e)=>{
+      console.log(e)
+  })
+}
+function Delete(model, qry){
+  try{
+    model.deleteOne(qry)
+    .then((e)=>console.log(e))
+  }
+  catch(err){
+    console.log(err)
+  }
 }
