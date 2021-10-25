@@ -12,4 +12,3 @@ app.use(express.urlencoded({extended: true}));
 app.use('/productos', productosRouter);
 app.use('/carrito', carritoRouter);
 app.use(handleError);
-
