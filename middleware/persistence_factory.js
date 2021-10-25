@@ -3,7 +3,8 @@ import {fs} from './fsDAO.js';
 const MySQL_DBaaS = require('./BMW');
 const SQLite3 = require('./BMW');
 const MongoDB_local = require('./BMW');*/
-import {MongoDB_DBaaS} from './mongoDAO.js';
+import {MongoDB_local} from './mongo_local_DAO.js';
+import {MongoDB_DBaaS} from './mongo_DBaaS_DAO.js';
 /*const Firebase = require('./BMW');*/
 
 export class persistenceFactory {

@@ -84,7 +84,7 @@ try{
         let actualizado;
             actualizarLista(archProductos,listaProd).then(()=>{
                 try{
-                    actualizado=listaProd.udpdateProducto(prod)
+                    actualizado=listaProd.updateProducto(prod)
                     archProductos.guardar(listaProd.getLista())
                     res.json(actualizado)                    
                 }
