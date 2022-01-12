@@ -8,4 +8,4 @@ const carritoschema = new mongoose.Schema({
     listaProd:{type:String, require: true, max:100},
 })
 
-export const carritos = mongoose.model(carritosCollection, carritoschema);
+export const carritoModel = mongoose.model(carritosCollection, carritoschema);

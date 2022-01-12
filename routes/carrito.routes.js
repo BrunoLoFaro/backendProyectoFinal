@@ -2,7 +2,7 @@ import {Router} from "express"
 
 import {
     getCarrito,
-    getCarrito_Id,
+    getCarrito_Codigo,
     postCarrito,
     deleteCarrito,
 } from "../controllers/carrito.controller.js"
@@ -10,7 +10,7 @@ import {
 export const carritoRouter = Router()
 
 carritoRouter
-    .get("/listar", getCarrito)
-    .get("/listar/:id", getCarrito_Id)
-    .post("/agregar/:id", postCarrito)
-    .delete("/borrar/:id", deleteCarrito);
+    .get("/", getCarrito)
+    .get("/:id", getCarrito_Codigo)
+    .post("/:id", postCarrito)
+    .delete("/:id", deleteCarrito);

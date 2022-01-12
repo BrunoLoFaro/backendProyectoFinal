@@ -1,9 +1,0 @@
-  {
-    _id: new ObjectId("616e43237dcd4acbdc26f437"),
-    nombre: 'Dan Brown - La fortaleza digital',
-    precio: 434,
-    foto: 'https://bibliotecaquijote.files.wordpress.com/2012/02/la-fortaleza-digital.jpg',
-    descripcion: 'bestseller thriller',
-    codigo: 'AS4224',
-    id: 2
-  }
