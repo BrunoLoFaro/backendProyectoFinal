@@ -2,7 +2,7 @@ import {persistencia_default} from './persistencia_default.js';
 import knex from 'knex';
 
 
-export class MySQL_local extends persistencia_default{
+export class MySQL_SQLite3 extends persistencia_default{
   constructor () {
     super('MySQL_local', Connect, Create, Read, Read_find, Update, Delete)
   }

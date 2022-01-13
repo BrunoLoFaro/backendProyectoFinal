@@ -1,6 +1,8 @@
-import {persistencia_default} from '../middleware/persistencia_default.js';
+import {persistencia_default} from './persistencia_default.js';
 import admin from 'firebase-admin';
-import serviceAccount from './db/prueba-2eae1-firebase-adminsdk-hjmq9-c5747ae8fb.json';
+//import serviceAccount from './db/prueba-2eae1-firebase-adminsdk-hjmq9-c5747ae8fb.json';
+
+//fix pending
 
 export class Firebase extends persistencia_default{
   constructor () {
@@ -14,7 +16,7 @@ const query = db.collection('productos');
 async function Connect (){
 
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    //credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://prueba-2eae1-firebaseio.com"
   });
   
@@ -26,7 +28,7 @@ async function Create (id, obj){
     await doc.create(obj);
 }
 
-function Read(){
+async function Read(){
   try {
     console.log('Seleccionando todos los documentos...');
     const querySnapshot = await query.get();
@@ -47,7 +49,7 @@ function Read(){
 }
 }
 
-function Read_find(id){
+async function Read_find(id){
   try{
     const doc = query.doc(`${id}`);  
     const item = await doc.update(attr)
@@ -60,7 +62,7 @@ function Read_find(id){
     console.log(err)
   } 
 }
-function Update(attr){//formato de la query?
+async function Update(attr){//formato de la query?
   try{
     const doc = query.doc(`${id}`);  
     const item = await doc.update(attr)
@@ -73,7 +75,7 @@ function Update(attr){//formato de la query?
   }
 }
 
-function Delete(id){
+async function Delete(id){
   try{
     const doc = query.doc(`${id}`);  
     const item = await doc.delete()

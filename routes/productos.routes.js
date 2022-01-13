@@ -6,7 +6,7 @@ import {
     postProducto,
     putProducto,
     deleteProducto,
-} from "../controllers/productos.controller.js"
+} from "../controllers/producto.controller.js"
 
 export const productosRouter = Router()
 

@@ -1,8 +1,9 @@
 import {persistencia_default} from './persistencia_default.js';
 import knex from 'knex';
 
+//fix pending
 
-export class MySQL_local extends persistencia_default{
+export class MySQL_DBaaS extends persistencia_default{
   constructor () {
     super('MySQL_local', Connect, Create, Read, Read_find, Update, Delete)
   }

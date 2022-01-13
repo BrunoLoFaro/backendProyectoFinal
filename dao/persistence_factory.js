@@ -1,10 +1,10 @@
-import {fs} from './fsDAO.js';
+import {fs} from './fs/fsDAO.js';
 import {MySQL_local} from './MySQL_local_DAO.js';
 import {MySQL_DBaaS} from './MySQL_DBaaS_DAO.js';
-import {SQLite3} from './MySQL_SQLite3_DAO.js';
+import {MySQL_SQLite3} from './MySQL_SQLite3_DAO.js';
 import {MongoDB_local} from './mongo_local_DAO.js';
 import {MongoDB_DBaaS} from './mongo_DBaaS_DAO.js';
-import {Firebase} from './Firebase_DAO.js';
+//import {Firebase} from './Firebase_DAO.js';
 
 export class persistenceFactory {
   create(type) {
@@ -27,8 +27,8 @@ export class persistenceFactory {
       case 5:
         return new MongoDB_DBaaS();
 
-      case 6:
-        return new Firebase();
+/*      case 6:
+        return new Firebase();*/
 
       default:
         {

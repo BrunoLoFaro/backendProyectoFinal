@@ -65,5 +65,3 @@ export class Lista{
         return this.vector
     }
 }
-
-export {vLoteElemento}

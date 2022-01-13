@@ -1,5 +1,5 @@
 import {persistencia_default} from '../persistencia_default.js';
-import Lista from 'claseLista.js'
+import {Lista} from './claseLista.js'
 import { Archivo } from './claseArchivo.js';
 
 export class fs extends persistencia_default{
@@ -11,19 +11,20 @@ export class fs extends persistencia_default{
 }
 
 async function Connect (){
+//check if the file exists
 return 1
 }
 
-async function Create(elem){
-  this.archivo.guardar(this.lista.setLista(elem))
+async function Create(model, obj){
+  this.archivo.guardar(this.lista.setLista(obj))
 }
 
 
-async function Read(){
+async function Read(model){
   return this.archivo.leer()
 }
 
-async function Read_find(id){
+async function Read_find(model,id){
   return this.lista.getElementoByCode(id)
 }
 
@@ -32,11 +33,7 @@ async function Update(elem){
   return 1
 }
 
-async function Connect(){
-//check if the file exists
-  return 1
-}
-
-async function Delete(elem){
+async function Delete(model, qry){
+  elem=qry//fix pending
   this.archivo.guardar(this.lista.eliminateElemento(elem))
 }

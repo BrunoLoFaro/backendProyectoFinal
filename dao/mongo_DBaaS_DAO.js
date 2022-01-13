@@ -26,8 +26,9 @@ async function Connect (){
 async function Create (model, obj){
   try {
     const SaveModel = new model(obj)
-    SaveModel.save()
-      }
+    await SaveModel.save()
+    return found_data
+    }
   catch(error) {
       console.log("db not running")
       ///throw `Error: ${error}`;
@@ -35,10 +36,13 @@ async function Create (model, obj){
 }
 
 function Read(model){
-  return model.find({}).then((found_data)=>console.log(found_data))//ex. productoModel
+  model.find({})
+  .then((found_data)=>{
+    return found_data
+  })//ex. productoModel
 }
 function Read_find(model,id){
-  return model.find({ id : 2 }).then((found_data)=>console.log(found_data))//ex. productoModel
+  return model.find({ id : 2 }).then((found_data)=>{return found_data})//ex. productoModel
 }
 function Update(model,qry){
   model.update(qry[0],qry[1])
