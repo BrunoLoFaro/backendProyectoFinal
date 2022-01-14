@@ -28,9 +28,13 @@ export const getCarrito_Codigo = (req,res, next)=>{
 };
 
 export const putCarrito =  (req,res,next)=>{
+    let id = req.params.id
+    let prod = req.body;
+    let qry = {'id': id}
+    let update = {$set: prod}
     try{
         //if (admin){
-        persistence.Update(carritoModel,req)
+        persistence.Update(carritoModel,qry, update)
         .then((response)=>{
             res.json(response)
         })
