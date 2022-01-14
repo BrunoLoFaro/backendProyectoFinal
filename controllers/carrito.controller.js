@@ -72,8 +72,3 @@ export const postCarrito = (req,res,next)=>{
         }
 
 };
-
-persistence.Connect()
-.then(()=>{
-    persistence.showInfo()
-})

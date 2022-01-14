@@ -1,7 +1,13 @@
 import {persistenceFactory} from './persistence_factory.js'
 const f = new persistenceFactory();
-export const persistence = f.create(5)//elijo el tipo de persistencia
-
+const persistence = f.create(5)//elijo el tipo de persistencia
+//conecto e imprimo su nombre
+persistence.Connect()
+.then(()=>{
+    persistence.showInfo()
+})
+//exporto la persistencia para que la usen los controllers
+export {persistence}
 /*
 
 Persistence Options

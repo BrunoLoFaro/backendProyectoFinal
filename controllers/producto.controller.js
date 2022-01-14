@@ -2,9 +2,11 @@ import {persistence} from '../dao/persistence.js'
 import {productoModel} from '../models/producto.model.js'
 
 export const getProducto = (req,res, next)=>{
+    console.log("i'm in")
     try{
         persistence.Read(productoModel)
         .then((response)=>{
+            console.log(response)
             res.json(response)
         })
     }
@@ -28,9 +30,13 @@ export const getProducto_Codigo = (req,res, next)=>{
 };
 
 export const putProducto =  (req,res,next)=>{
+    let id = req.params.id
+    let prod = req.body;
+    let qry = {'id': id}
+    let update = {$set: prod}
     try{
         //if (admin){
-        persistence.Update(productoModel,req)
+        persistence.Update(productoModel,qry, update)
         .then((response)=>{
             res.json(response)
         })
@@ -73,8 +79,3 @@ export const postProducto = (req,res,next)=>{
         }
 
 };
-
-persistence.Connect()
-.then(()=>{
-    persistence.showInfo()
-})

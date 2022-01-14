@@ -14,5 +14,5 @@ productosRouter
     .get("/", getProducto)
     .get("/:id", getProducto_Codigo)
     .post("/", postProducto)
-    .put("/", putProducto)
+    .put("/:id", putProducto)
     .delete("/:id", deleteProducto);

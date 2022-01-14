@@ -26,8 +26,8 @@ async function Connect (){
 async function Create (model, obj){
   try {
     const SaveModel = new model(obj)
-    await SaveModel.save()
-    return found_data
+    let res_data = await SaveModel.save()
+    return res_data
     }
   catch(error) {
       console.log("db not running")
@@ -35,25 +35,22 @@ async function Create (model, obj){
   }
 }
 
-function Read(model){
-  model.find({})
-  .then((found_data)=>{
-    return found_data
-  })//ex. productoModel
+async function Read(model){
+  let res_data = await  model.find({})
+    return res_data
 }
-function Read_find(model,id){
-  return model.find({ id : 2 }).then((found_data)=>{return found_data})//ex. productoModel
+async function Read_find(model,req_id){
+  let res_data = await model.find({ id : req_id })
+  return res_data
 }
-function Update(model,qry){
-  model.update(qry[0],qry[1])
-    .then((e)=>{
-      console.log(e)
-  })
+async function Update(model,qry, update){
+  let res_data = model.updateOne(qry, update)
+  return res_data
 }
-function Delete(model, qry){
+async function Delete(model, qry){
   try{
-    model.deleteOne(qry)
-    .then((e)=>console.log(e))
+    let res_data = await model.deleteOne(qry)
+    return res_data
   }
   catch(err){
     console.log(err)
