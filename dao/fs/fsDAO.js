@@ -5,7 +5,7 @@ import { Archivo } from './claseArchivo.js';
 export class fs extends persistencia_default{
   constructor (nombre="gen.txt",vector=[]) {
     super('fs', Connect, Create, Read, Read_find, Update, Delete)
-    this.archivo = new Archivo(nombre,vector)
+    this.archivo = new Archivo(nombre)
     this.lista=new Lista(vector)
   }
 }
@@ -16,7 +16,7 @@ return 1
 }
 
 async function Create(model, obj){
-  this.archivo.guardar(this.lista.setLista(obj))
+  this.archivo.guardar(this.lista.setElemento(obj))
 }
 
 
@@ -33,7 +33,6 @@ async function Update(elem){
   return 1
 }
 
-async function Delete(model, qry){
-  elem=qry//fix pending
-  this.archivo.guardar(this.lista.eliminateElemento(elem))
+async function Delete(model, id){
+  this.archivo.guardar(this.lista.eliminateElemento(id))
 }
