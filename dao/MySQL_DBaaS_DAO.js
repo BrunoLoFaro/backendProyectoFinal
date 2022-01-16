@@ -1,48 +1,35 @@
 import {persistencia_default} from './persistencia_default.js';
 import knex from 'knex';
 
-//fix pending
 
-export class MySQL_DBaaS extends persistencia_default{
+export class MySQL_local extends persistencia_default{
   constructor () {
     super('MySQL_local', Connect, Create, Read, Read_find, Update, Delete)
   }
 }
 
-const optionsMensajes = {
-  client: 'sqlite3',
-  connection: {
-      filename: './DB/mydb.sqlite'
-  },
-  useNullAsDefault: true
-}
-const optionsProductos = {
-  client: 'mysql',
-  connection: {
-      host: '127.0.0.1',
-      port: 3306,
-      user: 'root',
-      password: '',
-      database: 'productos'
-  },
-  useNullAsDefault: true
+const options = {
+  client: 'pg',
+  connection: process.env.DATABASE_URL,
+  searchPath: 'knex,public',
+  pool: { min: 0, max: 7 }
 }
 
-let knexMensajes = knex(optionsMensajes)
-let knexProductos = knex(optionsProductos)
+let knex_
 
 async function Connect (){
     try {
-      knexMensajes = knex(optionsMensajes)
-      knexProductos = knex(optionsProductos)
+      knex_ = knex(options)
         }
     catch(error) {
-        console.log("db not running")
+        console.log(error)
     }
 }
+
 async function Create (model, obj){
   try {
-    knexProductos('models').insert(obj)
+    let res = await knex_.from(modelName(model)).insert(obj)
+    return res
       }
   catch(error) {
       console.log("db not running")
@@ -50,32 +37,55 @@ async function Create (model, obj){
   }
 }
 
-function Read(model){
-  knexProductos.from(model).select('*').then((productos_guardados)=>{
-    return productos_guardados
-})
+async function Read(model){
+  let grp = modelName(model)
+  try {
+  let res = await knex_.select("*")
+      .from(grp)
+  return res
+  }
+  catch(error) {
+    console.log("db not running")
+    ///throw `Error: ${error}`;
+  }
 }
-function Read_find(model,id){
-  knexProductos.from(model).select('*').where('id', '=', id).then((productos_guardados)=>{
-    return productos_guardados
-})
-}
-function Update(model,qry){//formato de la query?
-  knexProductos.from(model).where('id', '=', id).update({price: 4700}).then((productos_guardados)=>{
-})
-  .then((e)=>{
-  console.log(e)
-  return productos_guardados
-  })
-}
-function Delete(model, qry){
+async function Read_find(model,id){
+  let grp = modelName(model)
   try{
-    knex.from('cars').where('price', '>', 4500).del()
-    .then(() => {
-        console.log('Filas borradas!');
-    })
+  let res = await knex_.from(grp).select('*').where('id', '=', id)
+    return res
   }
-  catch(err){
-    console.log(err)
+  catch(error) {
+    console.log("db not running")
+    ///throw `Error: ${error}`;
   }
+}
+async function Update(model,qry, update){
+  let grp = modelName(model)
+  try{
+    let res = await knex_.from(grp).where(qry).update(update)
+    return res
+  }
+  catch(error) {
+    console.log("db not running")
+    ///throw `Error: ${error}`;
+  }
+}
+
+async function Delete(model, qry){
+  let grp = modelName(model)
+  try {
+    let res = await knex_("productos")
+    .del()
+    .where(qry)
+    return res
+  }
+  catch(error) {
+    console.log("db not running")
+    ///throw `Error: ${error}`;
+  }
+}
+
+let modelName = (a)=>{
+return a.Model.name.toLowerCase() + 's'
 }

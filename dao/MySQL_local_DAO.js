@@ -9,9 +9,9 @@ export class MySQL_local extends persistencia_default{
 }
 
 const options = {
-  client: 'sqlite3',
+  client: 'mysql',
   connection: {
-      filename: 'C:/Users/Bruno/Desktop/proyecto_final/db/sqlite/db.db3'
+      filename: 'C:/Users/Bruno/Desktop/proyecto_final/db/sqlite/db2.db3'
   },
   useNullAsDefault: true
 }
