@@ -1,9 +1,5 @@
 {
   "type": "module",
-  "devDependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.12"
-  },
   "scripts": {
     "start": "node server.js"
   },
@@ -12,9 +8,11 @@
     "npm": ">=6.0.0"
   },
   "dependencies": {
+    "express": "^4.17.2",
     "firebase-admin": "^10.0.1",
     "fs": "0.0.1-security",
     "knex": "^0.95.15",
+    "mongoose": "^6.1.6",
     "mysql": "^2.18.1",
     "save": "^2.4.0",
     "sqlite3": "^5.0.2"
