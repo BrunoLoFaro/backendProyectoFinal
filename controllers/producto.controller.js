@@ -46,13 +46,14 @@ export const putProducto =  (req,res,next)=>{
     }
 };
 export const deleteProducto = (req,res,next)=>{
+    let id = req.params.id
+    let qry = {'id': id}
     try{
         //if(admin){
-
-            persistence.Delete(model,req)
-            .then((response)=>{
-                res.json(response)
-            })
+        persistence.Delete(model,qry)
+        .then((response)=>{
+            res.json(response)
+        })
     }
     catch(err)
     {

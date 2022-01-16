@@ -25,6 +25,9 @@ const productoSchema = new mongoose.Schema({
 })
 
 const Mongo = mongoose.model(productosCollection, productoSchema);
-const model = {Producto, Mongo}
+
+let Model = Producto
+
+const model = {Model, Mongo}
 
 export {model}
