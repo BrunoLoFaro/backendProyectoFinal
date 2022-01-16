@@ -1,5 +1,5 @@
 import {persistence} from '../dao/persistence.js'
-import {carritoModel}  from '../models/Carrito.model.js'
+import {carritoModel}  from '../models/carrito.model.js'
 
 export const getCarrito = (req,res, next)=>{
     try{
