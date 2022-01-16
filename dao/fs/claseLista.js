@@ -6,8 +6,8 @@ export class Lista{
     getLista(){
         return this.vector
     }
-    getElementoByCode(codigo){
-        let busq= this.vector.find(x=>x.codigo==codigo)
+    getElementoByCode(id){
+        let busq= this.vector.find(x=>x.id==id)
         if(busq===undefined)
         throw {'Error':"El Elemento no existe"};
         else
@@ -18,15 +18,15 @@ export class Lista{
         return this.vector
     }
     setElemento(elem){
-        let index = this.vector.find(e=>e.codigo==elem.codigo)
+        let index = this.vector.find(e=>e.id==elem.id)
             if(index===undefined)
             {
                 if(this.vector.length===0){
-                    elem['codigo']=0
+                    elem['id']=0
                 }
                 else{
                     let length = this.vector.length
-                    elem['codigo']=this.vector[length-1].codigo+1
+                    elem['id']=this.vector[length-1].id+1
                 }
 
                 this.vector.push(elem)
