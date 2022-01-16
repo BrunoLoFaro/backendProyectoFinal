@@ -1,0 +1,17 @@
+--
+-- File generated with SQLiteStudio v3.3.3 on vie. ene. 14 15:20:04 2022
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: carrito
+CREATE TABLE carrito (id INTEGER PRIMARY KEY ASC AUTOINCREMENT, timestamp STRING, listaProd STRING);
+
+-- Table: productos
+CREATE TABLE productos (id INTEGER PRIMARY KEY ASC AUTOINCREMENT, timestamp STRING, nombre STRING, descripcion STRING, codigo STRING, foto STRING, precio INTEGER, stock INTEGER);
+INSERT INTO productos (id, timestamp, nombre, descripcion, codigo, foto, precio, stock) VALUES (1, 2, 'algo', 'es algo', 'AF31', 'foto.com', 3985, 30);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
