@@ -1,18 +1,32 @@
 import {persistencia_default} from '../persistencia_default.js';
 import {Lista} from './claseLista.js'
 import { Archivo } from './claseArchivo.js';
+import fs from 'fs';
 
-export class fs extends persistencia_default{
+export class local_txt extends persistencia_default{
   constructor (nombre="gen.txt",vector=[]) {
-    super('fs', Connect, Create, Read, Read_find, Update, Delete)
+    super('local_txt', Connect, Create, Read, Read_find, Update, Delete)
     this.archivo = new Archivo(nombre)
     this.lista=new Lista(vector)
+
   }
 }
 
+async function readPrevious(inst){
+  let res = await inst.archivo.leer()
+  inst.lista.vector = JSON.parse(res)
+}
+
 async function Connect (){
-//check if the file exists
-return 1
+  //if (fs.existsSync('../../data/gen.txt'))
+  if (fs.existsSync('C:/Users/Bruno/Desktop/proyecto_final/data/gen.txt'))
+  {
+    console.log("exists")
+    readPrevious(this)
+    return 'reading existing file'
+  }
+  else
+  return 'creating new file'
 }
 
 async function Create(model, obj){
@@ -21,7 +35,8 @@ async function Create(model, obj){
 
 
 async function Read(model){
-  return this.archivo.leer()
+  let res = await this.archivo.leer()
+  return JSON.parse(res)
 }
 
 async function Read_find(model,id){

@@ -1,4 +1,4 @@
-import {fs} from './fs/fsDAO.js';
+import {local_txt} from './fs/fsDAO.js';
 import {MySQL_local} from './MySQL_local_DAO.js';
 import {MySQL_DBaaS} from './MySQL_DBaaS_DAO.js';
 import {MySQL_SQLite3} from './MySQL_SQLite3_DAO.js';
@@ -10,7 +10,7 @@ export class persistenceFactory {
   create(type) {
     switch (type) {
       case 0:
-        return new fs()
+        return new local_txt()
 
       case 1:
         return new MySQL_local()

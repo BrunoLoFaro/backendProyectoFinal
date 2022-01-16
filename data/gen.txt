@@ -1,1 +1,32 @@
-[]
+[
+	{
+		"id": 0,
+		"timestamp": "123.:654:23.",
+		"nombre": "remera Reef",
+		"descripcion": "remera talle m color roja",
+		"codigo": 0,
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "2233",
+		"stock": "1"
+	},
+	{
+		"id": 3,
+		"timestamp": "123.:654:23.",
+		"nombre": "remera Reef",
+		"descripcion": "remera talle m color roja",
+		"codigo": 1,
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "2233",
+		"stock": "1"
+	},
+	{
+		"id": 2,
+		"timestamp": "123.:654:23.",
+		"nombre": "remera Reef",
+		"descripcion": "remera talle m color roja",
+		"codigo": 2,
+		"foto": "https://w7.guitars.com/pngs/859/290/png-transparent-table-glass-drawing-idea-glass-angle-white-thumbnail.png",
+		"precio": "2233",
+		"stock": "1"
+	}
+]
