@@ -1,6 +1,6 @@
 import {app} from "./app.js"
 
-const PORT = 8080
+const PORT = process.env.PORT
 
 const server = app.listen(PORT, ()=>{
     console.log(`Servidor HTTP escuchando en el puerto ${PORT}`);
