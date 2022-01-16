@@ -25,7 +25,7 @@ async function Connect (){
 }
 async function Create (model, obj){
   try {
-    const SaveModel = new model(obj)
+    const SaveModel = new model.Mongo(obj)
     let res_data = await SaveModel.save()
     return res_data
     }
@@ -36,20 +36,20 @@ async function Create (model, obj){
 }
 
 async function Read(model){
-  let res_data = await  model.find({})
+  let res_data = await  model.Mongo.find({})
     return res_data
 }
 async function Read_find(model,req_id){
-  let res_data = await model.find({ id : req_id })
+  let res_data = await model.Mongo.find({ id : req_id })
   return res_data
 }
 async function Update(model,qry, update){
-  let res_data = model.updateOne(qry, update)
+  let res_data = model.Mongo.updateOne(qry, update)
   return res_data
 }
 async function Delete(model, qry){
   try{
-    let res_data = await model.deleteOne(qry)
+    let res_data = await model.Mongo.deleteOne(qry)
     return res_data
   }
   catch(err){

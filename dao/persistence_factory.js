@@ -19,7 +19,7 @@ export class persistenceFactory {
         return new MySQL_DBaaS()
 
       case 3:
-        return new SQLite3()
+        return new MySQL_SQLite3()
 
       case 4:
         return new MongoDB_local();

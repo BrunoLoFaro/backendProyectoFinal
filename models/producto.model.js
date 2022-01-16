@@ -12,6 +12,19 @@ class Producto{
         this.stock=stock
     }
 }
-let producto = new Producto(1,1,"a","a","a","a",1,1)
 
-export {producto}
+const productoSchema = new mongoose.Schema({
+    id:{type:Number, require: true},
+    timestamp:{type:String, require: true, max:100},
+    nombre:{type:String, require: true, max:100},
+    descripcion:{type:String, require: true, max:100},
+    codigo:{type:String, require: true, max:100},
+    foto:{type:String, require: true, max:100},
+    precio:{type:Number, require: true, max:5000},
+    stock:{type:Number, require: true, max:100},
+})
+
+const Mongo = mongoose.model(productosCollection, productoSchema);
+const model = {Producto, Mongo}
+
+export {model}
