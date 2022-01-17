@@ -7,7 +7,6 @@ const opt = parseInt(process.env.PERSISTENCE)
 
 const persistence = f.create(opt)//elijo el tipo de persistencia
 
-console.log(persistence)
 //conecto e imprimo su nombre
 persistence.Connect()
 .then((e)=>{

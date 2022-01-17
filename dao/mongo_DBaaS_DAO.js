@@ -24,13 +24,8 @@ async function Connect (){
     }
 }
 function Create (model, obj){
-  try {
     const SaveModel = new model.Mongo(obj)
     SaveModel.save();
-    }
-  catch(error) {
-      throw `Error: ${error}`;
-  }
 }
 
 async function Read(model){
