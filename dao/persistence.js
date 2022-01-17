@@ -1,6 +1,6 @@
 import {persistenceFactory} from './persistence_factory.js'
 const f = new persistenceFactory();
-const persistence = f.create(5)//elijo el tipo de persistencia
+const persistence = f.create(process.env.PERSISTENCE)//elijo el tipo de persistencia
 //conecto e imprimo su nombre
 persistence.Connect()
 .then((e)=>{
