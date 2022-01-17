@@ -2,7 +2,7 @@ import express from 'express';
 import { carritoRouter } from './routes/carrito.routes.js';
 import { productosRouter } from './routes/productos.routes.js';
 import { handleError } from './middleware/errorHandler.js';
-import { cors } from 'cors';
+import  cors  from 'cors';
 
 export const app = express();
 
