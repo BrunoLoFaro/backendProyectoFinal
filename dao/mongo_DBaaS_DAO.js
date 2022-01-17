@@ -23,15 +23,13 @@ async function Connect (){
         ///throw `Error: ${error}`;
     }
 }
-async function Create (model, obj){
+function Create (model, obj){
   try {
     const SaveModel = new model.Mongo(obj)
-    let res_data = await SaveModel.save()
-    return res_data
+    SaveModel.save();
     }
   catch(error) {
-      console.log("db not running")
-      ///throw `Error: ${error}`;
+      throw `Error: ${error}`;
   }
 }
 

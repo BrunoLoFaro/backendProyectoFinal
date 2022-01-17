@@ -21,7 +21,6 @@ async function Connect (){
   //if (fs.existsSync('../../data/gen.txt'))
   if (fs.existsSync('C:/Users/Bruno/Desktop/proyecto_final/data/gen.txt'))
   {
-    console.log("exists")
     readPrevious(this)
     return 'reading existing file'
   }
