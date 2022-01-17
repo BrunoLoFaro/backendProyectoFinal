@@ -1,10 +1,16 @@
 import {persistenceFactory} from './persistence_factory.js'
+import dotenv from 'dotenv';
+dotenv.config({path: './config/.env'})
+
 const f = new persistenceFactory();
-const persistence = f.create(process.env.PERSISTENCE)//elijo el tipo de persistencia
+const opt = parseInt(process.env.PERSISTENCE)
+
+const persistence = f.create(opt)//elijo el tipo de persistencia
+
+console.log(persistence)
 //conecto e imprimo su nombre
 persistence.Connect()
 .then((e)=>{
-    console.log(e)
     persistence.showInfo()
 })
 //exporto la persistencia para que la usen los controllers
