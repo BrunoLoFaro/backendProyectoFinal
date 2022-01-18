@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-const productosCollection = 'productos'
 class Producto{
     constructor(id, timestamp, nombre,descripcion, codigo, foto, precio, stock){
         this.id=id
@@ -12,8 +11,8 @@ class Producto{
         this.stock=stock
     }
 }
-
-const productoSchema = new mongoose.Schema({
+const productosCollection = 'productos'
+const productosSchema = new mongoose.Schema({
     id:{type:Number, require: true},
     timestamp:{type:String, require: true, max:100},
     nombre:{type:String, require: true, max:100},
@@ -24,7 +23,7 @@ const productoSchema = new mongoose.Schema({
     stock:{type:Number, require: true, max:100},
 })
 
-const Mongo = mongoose.model(productosCollection, productoSchema);
+const Mongo = mongoose.model(productosCollection, productosSchema);
 
 let Model = Producto
 

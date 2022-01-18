@@ -1,9 +1,9 @@
 import {persistence} from '../dao/persistence.js'
-import {carritoModel}  from '../models/carrito.model.js'
+import {model} from '../models/carrito.model.js'
 
 export const getCarrito = (req,res, next)=>{
     try{
-        persistence.Read(carritoModel)
+        persistence.Read(model)
         .then((response)=>{
             res.json(response)
         })
@@ -12,14 +12,14 @@ export const getCarrito = (req,res, next)=>{
     }
 };
 
-export const getCarrito_Codigo = (req,res, next)=>{
+export const getParrito_Codigo = (req,res, next)=>{
         let params = req.params;
         let codigo = params.id;
     try{
-       persistence.Read_find(carritoModel, codigo)
+       persistence.Read_find(model, codigo)
        .then((response)=>{
             res.json(response)
-        })
+        })   
     }
     catch(err)
     {
@@ -27,14 +27,14 @@ export const getCarrito_Codigo = (req,res, next)=>{
     }
 };
 
-export const putCarrito =  (req,res,next)=>{
+export const putParrito =  (req,res,next)=>{
     let id = req.params.id
     let prod = req.body;
     let qry = {'id': id}
     let update = {$set: prod}
     try{
         //if (admin){
-        persistence.Update(carritoModel,qry, update)
+        persistence.Update(model,qry, update)
         .then((response)=>{
             res.json(response)
         })
@@ -45,14 +45,15 @@ export const putCarrito =  (req,res,next)=>{
         next(err)
     }
 };
-export const deleteCarrito = (req,res,next)=>{
+export const deleteParrito = (req,res,next)=>{
+    let id = req.params.id
+    let qry = {'id': id}
     try{
         //if(admin){
-
-            persistence.Delete(carritoModel,req)
-            .then((response)=>{
-                res.json(response)
-            })
+        persistence.Delete(model,qry)
+        .then((response)=>{
+            res.json(response)
+        })
     }
     catch(err)
     {
@@ -61,11 +62,11 @@ export const deleteCarrito = (req,res,next)=>{
     }
 };
 
-export const postCarrito = (req,res,next)=>{
+export const postParrito = (req,res,next)=>{
     //if (admin)
         try{
             let prod = req.body;
-            persistence.Create(carritoModel, prod)
+            persistence.Create(model, prod)
             .then((response)=>{
                 res.json(response)
             })
