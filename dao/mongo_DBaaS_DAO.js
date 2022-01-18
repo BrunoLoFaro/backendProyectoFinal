@@ -36,6 +36,10 @@ async function Read_find(model,req_id){
   let res_data = await model.Mongo.find({ id : req_id })
   return res_data
 }
+async function Read_qry(model,qry){
+  let res_data = await model.Mongo.find(qry)
+  return res_data
+}
 async function Update(model,qry, update){
   let res_data = model.Mongo.updateOne(qry, update)
   return res_data

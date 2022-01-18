@@ -1,3 +1,9 @@
+import bCrypt from 'bcrypt'
+
+export function createHash(pass){
+    return bCrypt.hashSync(password, bCrypt.genSaltSync(10),null)
+}
+
 export function schemaMaker(obj){
     let schema = new Object
     Object.keys(obj).forEach(clave => {

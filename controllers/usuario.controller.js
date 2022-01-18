@@ -27,6 +27,21 @@ export const getUsuario_Codigo = (req,res, next)=>{
     }
 };
 
+export const getUsuario_Nombre = (req,res, next)=>{
+        let params = req.params;
+        let nombre = params.nombre;
+        let qry = {nombre : nombre}
+    try{
+       persistence.Read_find(model, qry)
+       .then((response)=>{
+            res.json(response)
+        })   
+    }
+    catch(err)
+    {
+        next(err)
+    }
+};
 export const putUsuario =  (req,res,next)=>{
     let id = req.params.id
     let prod = req.body;
