@@ -16,6 +16,8 @@
     "knex": "^0.95.15",
     "mongoose": "^6.1.6",
     "mysql": "^2.18.1",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "save": "^2.4.0",
     "sqlite3": "^5.0.2"
   }

@@ -12,7 +12,7 @@ export const getCarrito = (req,res, next)=>{
     }
 };
 
-export const getParrito_Codigo = (req,res, next)=>{
+export const getCarrito_Codigo = (req,res, next)=>{
         let params = req.params;
         let codigo = params.id;
     try{
@@ -27,7 +27,7 @@ export const getParrito_Codigo = (req,res, next)=>{
     }
 };
 
-export const putParrito =  (req,res,next)=>{
+export const putCarrito =  (req,res,next)=>{
     let id = req.params.id
     let prod = req.body;
     let qry = {'id': id}
@@ -45,7 +45,7 @@ export const putParrito =  (req,res,next)=>{
         next(err)
     }
 };
-export const deleteParrito = (req,res,next)=>{
+export const deleteCarrito = (req,res,next)=>{
     let id = req.params.id
     let qry = {'id': id}
     try{
@@ -62,7 +62,7 @@ export const deleteParrito = (req,res,next)=>{
     }
 };
 
-export const postParrito = (req,res,next)=>{
+export const postCarrito = (req,res,next)=>{
     //if (admin)
         try{
             let prod = req.body;

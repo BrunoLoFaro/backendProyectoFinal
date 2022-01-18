@@ -13,7 +13,7 @@ const carritosSchema = new mongoose.Schema({
     timestamp:{type:String, require: true, max:100},
     listaProd:{type:String, require: true, max:100},
 })
-const Mongo = mongoose.model(carritosCollection, carritoschema);
+const Mongo = mongoose.model(carritosCollection, carritosSchema);
 
 let Model = Carrito
 
