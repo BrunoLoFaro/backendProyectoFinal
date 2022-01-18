@@ -25,7 +25,7 @@ const usuariosSchema = new mongoose.Schema({
 
 const Mongo = mongoose.model(usuariosCollection, usuariosSchema);
 
-let Model = Producto
+let Model = Usuario
 
 const model = {Model, Mongo}
 
