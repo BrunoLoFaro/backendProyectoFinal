@@ -1,6 +1,6 @@
 import {Router} from "express"
 import {getLogin, postLogin, checkAuthentication} from "../util/login.methods.js"
-import passport from 'passport';
+import {passport} from '../middleware/auth.js';
 
 export const loginRouter = Router()
 
