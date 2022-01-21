@@ -1,26 +1,24 @@
 import mongoose from 'mongoose'
 export class Usuario{
-    constructor(nombre, edad){
+    constructor(id,password,nombre,apellido,edad,alias,avatar){
         this.id = id
-        this.nombre = nombre
-        this.direccion = direccion
-        this.edad = edad
-        this.telefono = telefono
-        this.foto = foto
-        this.email = email
         this.password = password
+        this.nombre = nombre
+        this.apellido = apellido
+        this.edad = edad
+        this.alias = alias
+        this.avatar = avatar
     }
   }
 const usuariosCollection = 'usuarios'
 const usuariosSchema = new mongoose.Schema({
     id:{type:Number, require: true},
-    nombre:{type:String, require: true, max:100},
-    direccion:{type:String, require: true, max:100},
-    edad:{type:Number, require: true, max:100},
-    telefono:{type:String, require: true, max:100},
-    foto:{type:String, require: true, max:100},
-    email:{type:String, require: true, max:100},
     password:{type:String, require: true, max:100},
+    nombre:{type:String, require: true, max:100},
+    apellido:{type:String, require: true, max:100},
+    edad:{type:Number, require: true, max:100},
+    alias:{type:String, require: true, max:100},
+    avatar:{type:String, require: true, max:100},
 })
 
 const Mongo = mongoose.model(usuariosCollection, usuariosSchema);

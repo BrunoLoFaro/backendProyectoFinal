@@ -27,12 +27,35 @@ export const getUsuario_Codigo = (req,res, next)=>{
     }
 };
 
+export async function searchUsuario_Codigo(id){
+try{
+   let res = await persistence.Read_find(model, id)
+   console.log(res)
+   return res
+}
+catch(err)
+{
+    next(err)
+}
+};
+
+export async function searchUsuario_Nombre(nombre){
+        let qry = {nombre : nombre}
+    try{
+       let response = await persistence.Read_qry(model, qry)
+            return response
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+};
 export const getUsuario_Nombre = (req,res, next)=>{
         let params = req.params;
         let nombre = params.nombre;
         let qry = {nombre : nombre}
     try{
-       persistence.Read_find(model, qry)
+       persistence.Read_qry(model, qry)
        .then((response)=>{
             res.json(response)
         })   
@@ -89,6 +112,20 @@ export const postUsuario = (req,res,next)=>{
         catch(err)
         {
             next(err)
+        }
+
+};
+
+export async function postUsuarioN(usuario){//for passport
+    //if (admin)
+    console.log(usuario)
+        try{
+            let response = await persistence.Create(model, usuario)
+            return response
+        }
+        catch(err)
+        {
+            console.log(err)
         }
 
 };

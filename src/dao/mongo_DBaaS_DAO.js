@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 
 export class MongoDB_DBaaS extends persistencia_default{
   constructor () {
-    super('MongoDB_DBaaS', Connect, Create, Read, Read_find, Update, Delete)
+    super('MongoDB_DBaaS', Connect, Create, Read, Read_find, Read_qry, Update, Delete)
   }
 }
 
