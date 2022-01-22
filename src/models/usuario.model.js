@@ -13,7 +13,7 @@ export class Usuario{
 const usuariosCollection = 'usuarios'
 const usuariosSchema = new mongoose.Schema({
     id:{type:Number, require: true},
-    password:{type:String, require: true, max:100},
+    password:{type:String, require: true},
     nombre:{type:String, require: true, max:100},
     apellido:{type:String, require: true, max:100},
     edad:{type:Number, require: true, max:100},

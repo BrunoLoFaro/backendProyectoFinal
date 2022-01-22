@@ -1,3 +1,4 @@
+//al menos localmente no funciona ejecutado desde la raiz. sí, desde /src
 import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
