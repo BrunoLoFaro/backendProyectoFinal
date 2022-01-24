@@ -68,11 +68,31 @@ export const getUsuario_Nombre = (req,res, next)=>{
         next(err)
     }
 };
+export const patchUsuario =  (req,res,next)=>{
+    let id = req.params.id
+    let obj = req.body;
+    let qry = {'id': id}
+    let update = {$set: obj}
+    console.log(req.params.id)
+    console.log(update)
+    try{
+        //if (admin){
+        persistence.Update(model,qry, update)
+        .then((response)=>{
+            res.json(response)
+        })
+    }
+    catch(err)
+    {
+        //console.log(err)
+        next(err)
+    }
+};
 export const putUsuario =  (req,res,next)=>{
     let id = req.params.id
-    let prod = req.body;
+    let obj = req.body;
     let qry = {'id': id}
-    let update = {$set: prod}
+    let update = {$set: obj}
     try{
         //if (admin){
         persistence.Update(model,qry, update)
