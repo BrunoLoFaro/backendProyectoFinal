@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 
 export class MongoDB_DBaaS extends persistencia_default{
   constructor () {
-    super('MongoDB_DBaaS', Connect, Create, Read, Read_find, Read_qry, Update, Delete)
+    super('MongoDB_DBaaS', Connect, Create, Read_all , Read_qry, Update, Delete)
   }
 }
 
@@ -28,14 +28,11 @@ function Create (model, obj){
     SaveModel.save();
 }
 
-async function Read(model){
+async function Read_all(model){
   let res_data = await  model.Mongo.find({})
     return res_data
 }
-async function Read_find(model,req_id){
-  let res_data = await model.Mongo.find({ id : req_id })
-  return res_data
-}
+
 async function Read_qry(model,qry){
   let res_data = await model.Mongo.find(qry)
   return res_data

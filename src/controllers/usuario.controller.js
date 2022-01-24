@@ -3,7 +3,7 @@ import {model} from '../models/usuario.model.js'
 
 export const getUsuario = (req,res, next)=>{
     try{
-        persistence.Read(model)
+        persistence.Read_all(model)
         .then((response)=>{
             res.json(response)
         })
@@ -14,9 +14,10 @@ export const getUsuario = (req,res, next)=>{
 
 export const getUsuario_Codigo = (req,res, next)=>{
         let params = req.params;
-        let codigo = params.id;
+        let id = params.id;
+        let qry = {id: id}
     try{
-       persistence.Read_find(model, codigo)
+       persistence.Read_qry(model, qry)
        .then((response)=>{
             res.json(response)
         })   
@@ -28,8 +29,9 @@ export const getUsuario_Codigo = (req,res, next)=>{
 };
 
 export async function searchUsuario_Codigo(id){
+    let qry = {id: id}
 try{
-   let res = await persistence.Read_find(model, id)
+   let res = await persistence.Read_qry(model, qry)
    console.log(res)
    return res
 }
@@ -43,6 +45,7 @@ export async function searchUsuario_Nombre(nombre){
         let qry = {nombre : nombre}
     try{
        let response = await persistence.Read_qry(model, qry)
+       console.log(response)
             return response
     }
     catch(err)
