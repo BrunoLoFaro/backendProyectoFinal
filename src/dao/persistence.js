@@ -1,6 +1,6 @@
 import {persistenceFactory} from './persistence_factory.js'
 import dotenv from 'dotenv';
-dotenv.config({path: './config/.env'})
+dotenv.config({path: './src/config/.env'})
 
 const f = new persistenceFactory();
 const opt = parseInt(process.env.PERSISTENCE)
