@@ -1,6 +1,5 @@
 import {Router} from "express"
-import multer from 'multer'
-const upload = multer({ dest: "uploads/" });
+import {upload} from '../middleware/multer.config.js'
 import {
     getUsuario,
     getUsuario_Codigo,
@@ -17,5 +16,5 @@ usuarioRouter
     .get("/:id", getUsuario_Codigo)
     .post("/", postUsuario)
     .put("/:id", putUsuario)
-    .patch("/avatar/:id", upload.single('avatar'), patchUsuario)
+    .patch("/avatar/:id", patchUsuario, upload.single('avatar'))
     .delete("/:id", deleteUsuario);

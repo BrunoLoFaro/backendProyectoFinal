@@ -73,13 +73,11 @@ export const patchUsuario =  (req,res,next)=>{
     let obj = req.body;
     let qry = {'id': id}
     let update = {$set: obj}
-    console.log(req.params.id)
-    console.log(update)
     try{
-        //if (admin){
         persistence.Update(model,qry, update)
         .then((response)=>{
-            res.json(response)
+            next()
+            //res.json(response)
         })
     }
     catch(err)
@@ -127,6 +125,8 @@ export const postUsuario = (req,res,next)=>{
     //if (admin)
         try{
             let prod = req.body;
+            prod.avatar = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
+            prod.contentType = 'image/png'
             persistence.Create(model, prod)
             .then((response)=>{
                 res.json(response)
