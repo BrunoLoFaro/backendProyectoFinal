@@ -18,7 +18,7 @@ const usuariosSchema = new mongoose.Schema({
     apellido:{type:String, require: true, max:100},
     edad:{type:Number, require: true, max:100},
     alias:{type:String, require: true, max:100},
-    avatar:{data:Buffer, contentType:String, require: true, max:100},
+    avatar:{data:Buffer, contentType:String}
 })
 
 const Mongo = mongoose.model(usuariosCollection, usuariosSchema);
