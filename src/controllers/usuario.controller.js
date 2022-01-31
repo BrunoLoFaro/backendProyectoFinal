@@ -41,8 +41,8 @@ catch(err)
 }
 };
 
-export async function searchUsuario_Nombre(nombre){
-        let qry = {nombre : nombre}
+export async function searchUsuario_Alias(alias){
+        let qry = {alias : alias}
     try{
        let response = await persistence.Read_qry(model, qry)
        console.log(response)

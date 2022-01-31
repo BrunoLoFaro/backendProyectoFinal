@@ -1,6 +1,6 @@
 import passport from 'passport'
 import passportLocal from 'passport-local'//passportLocal.strategy?
-import {searchUsuario_Nombre, searchUsuario_Codigo, postUsuarioN} from '../controllers/usuario.controller.js'
+import {searchUsuario_Alias, searchUsuario_Codigo, postUsuarioN} from '../controllers/usuario.controller.js'
 import bcrypt from 'bcrypt'
 const saltRounds = 10;
 
@@ -8,13 +8,13 @@ let LocalStrategy = passportLocal.Strategy
 passport.use('signup', new LocalStrategy({
         passReqToCallback : true
     },
-    function(req, username, password, done) {
+    function(req, alias, password, done) {
         let reqUser = req.query
     try{
-    searchUsuario_Nombre(username)
+    searchUsuario_Alias(alias)
     .then((usuario)=>{
         if (usuario.length != 0){
-            return done(null, false, console.log(usuario.nombre, 'Usuario ya existe'));
+            return done(null, false, console.log(usuario.alias, 'Usuario ya existe'));
         }
         else {
             bcrypt.hash(password, saltRounds)
@@ -22,10 +22,10 @@ passport.use('signup', new LocalStrategy({
                 let nuevoUsuario = {
                     id: reqUser.id,//setear id autom.
                     password: encryptedPassword,//add encription
-                    nombre: username,
+                    nombre: reqUser.username,
                     apellido: reqUser.apellido,
                     edad: reqUser.edad,
-                    alias: reqUser.alias,
+                    alias: alias,
                     avatar: reqUser.avatar
                 }
                 postUsuarioN(nuevoUsuario);
@@ -42,18 +42,18 @@ passport.use('signup', new LocalStrategy({
 passport.use('login', new LocalStrategy({
         passReqToCallback: true
     }, 
-    function (req, username, password, done) {
+    function (req, alias, password, done) {
     try{
-        searchUsuario_Nombre(username)
+        searchUsuario_Alias(alias)
         .then((usuario)=>{
             if (usuario.length === 0) {
-                return done(null, false, console.log(username, 'usuario no existe'));
+                return done(null, false, console.log(alias, 'usuario no existe'));
             } else {
                 bcrypt.compare(password, usuario[0].password).then((comparison)=>{
                     if (comparison) {
                         return done(null, usuario)
                     } else {
-                        return done(null, false, console.log(username, 'password errónea'));
+                        return done(null, false, console.log(alias, 'password errónea'));
                     }
                 })
             }

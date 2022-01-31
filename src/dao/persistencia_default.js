@@ -1,3 +1,4 @@
+import {logger} from '../middleware/logger.config.js'
 export class persistencia_default {
   constructor(name, Connect,Create, Read_all, Read_qry, Update, Delete) {
     this.name = name;
@@ -9,6 +10,6 @@ export class persistencia_default {
     this.Delete=Delete;
   }
   showInfo() {
-    console.log(`Using ${this.name} as persistence`)
+    logger.info(`Using ${this.name} as persistence`)
   }
 }
