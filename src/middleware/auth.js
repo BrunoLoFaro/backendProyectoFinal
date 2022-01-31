@@ -56,11 +56,6 @@ passport.use('login', new LocalStrategy({
                         return done(null, false, console.log(username, 'password errónea'));
                     }
                 })
-                /*if (usuario[0].password == password) {
-                    return done(null, usuario)  
-                } else {
-                    return done(null, false, console.log(username, 'password errónea'));
-                }*/
             }
         })
     }

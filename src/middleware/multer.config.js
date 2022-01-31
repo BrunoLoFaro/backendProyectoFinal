@@ -5,7 +5,7 @@ let storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
       cb(null, req.params.id + '.jpg') //Appending .jpg
-      console.log(file.mimetype)
+      //console.log(file.mimetype)
     }
   })
   

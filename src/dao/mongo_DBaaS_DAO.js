@@ -1,5 +1,6 @@
 import {persistencia_default} from './persistencia_default.js';
 import mongoose from 'mongoose'
+import {logger} from '../middleware/logger.config.js'
 
 export class MongoDB_DBaaS extends persistencia_default{
   constructor () {
@@ -16,10 +17,10 @@ async function Connect (){
               useUnifiedTopology: true,
               serverSelectionTimeoutMS: 5000
             })    
-        console.log('Conectado a la base de datos...');
+            logger.info("Conectado a la base de datos");
         }
     catch(error) {
-        console.log("db not running")
+        logger.warn("Error al conectarse a la base de datos" + error);
         ///throw `Error: ${error}`;
     }
 }
@@ -42,11 +43,6 @@ async function Update(model,qry, update){
   return res_data
 }
 async function Delete(model, qry){
-  try{
     let res_data = await model.Mongo.deleteOne(qry)
     return res_data
-  }
-  catch(err){
-    console.log(err)
-  }
 }
