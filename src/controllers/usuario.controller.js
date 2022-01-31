@@ -72,12 +72,31 @@ export const patchUsuario =  (req,res,next)=>{
     let id = req.params.id
     let obj = req.body;
     let qry = {'id': id}
+    console.log(req.body)
     let update = {$set: obj}
     try{
         persistence.Update(model,qry, update)
         .then((response)=>{
+            //res.send(response)
             next()
-            //res.json(response)
+        })
+    }
+    catch(err)
+    {
+        //console.log(err)
+        next(err)
+    }
+};
+export const updateAvatar =  (req,res,next)=>{
+    let id = req.params.id
+    let obj = {avatar: id+'.jpg'}
+    let qry = {'id': id}
+    let update = {$set: obj}
+    try{
+        persistence.Update(model,qry, update)
+        .then((response)=>{
+            //res.send(response)
+            next()
         })
     }
     catch(err)

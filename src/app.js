@@ -9,6 +9,7 @@ import { carritoRouter } from './routes/carrito.routes.js';
 import { productoRouter } from './routes/producto.routes.js';
 import { usuarioRouter } from './routes/usuario.routes.js';
 import { handleError } from './middleware/errorHandler.js';
+import {failRoute} from './util/auth.methods.js';
 
 export const app = express();
 
@@ -28,4 +29,5 @@ app.use('/auth', authRouter);
 app.use('/producto', productoRouter);
 app.use('/carrito', carritoRouter);
 app.use('/usuario', usuarioRouter);
+app.get('*', failRoute);
 app.use(handleError);

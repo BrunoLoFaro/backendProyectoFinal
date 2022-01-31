@@ -5,6 +5,7 @@ import {
     getUsuario_Codigo,
     postUsuario,
     patchUsuario,
+    updateAvatar,
     putUsuario,
     deleteUsuario,
 } from "../controllers/usuario.controller.js"
@@ -16,5 +17,5 @@ usuarioRouter
     .get("/:id", getUsuario_Codigo)
     .post("/", postUsuario)
     .put("/:id", putUsuario)
-    .patch("/avatar/:id", patchUsuario, upload.single('avatar'))
+    .patch("/avatar/:id", updateAvatar, upload.single('avatar'))
     .delete("/:id", deleteUsuario);
