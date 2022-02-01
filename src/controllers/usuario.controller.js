@@ -13,32 +13,32 @@ export const getUsuario = (req,res, next)=>{
 };
 
 export const getUsuario_Codigo = (req,res, next)=>{
-        let params = req.params;
-        let id = params.id;
-        let qry = {id: id}
+    let params = req.params;
+    let id = params.id;
+    let qry = {id: id}
+        try{
+        persistence.Read_qry(model, qry)
+        .then((response)=>{
+                res.json(response)
+            })   
+        }
+        catch(err)
+        {
+            next(err)
+        }
+};
+
+export async function searchUsuario_Codigo(id){
+let qry = {id: id}
     try{
-       persistence.Read_qry(model, qry)
-       .then((response)=>{
-            res.json(response)
-        })   
+        let res = await persistence.Read_qry(model, qry)
+        console.log(res)
+        return res
     }
     catch(err)
     {
         next(err)
     }
-};
-
-export async function searchUsuario_Codigo(id){
-    let qry = {id: id}
-try{
-   let res = await persistence.Read_qry(model, qry)
-   console.log(res)
-   return res
-}
-catch(err)
-{
-    next(err)
-}
 };
 
 export async function searchUsuario_Alias(alias){
@@ -72,7 +72,6 @@ export const patchUsuario =  (req,res,next)=>{
     let id = req.params.id
     let obj = req.body;
     let qry = {'id': id}
-    console.log(req.body)
     let update = {$set: obj}
     try{
         persistence.Update(model,qry, update)

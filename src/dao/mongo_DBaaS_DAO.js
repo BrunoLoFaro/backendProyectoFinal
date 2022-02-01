@@ -30,8 +30,16 @@ function Create (model, obj){
 }
 
 async function Read_all(model){
-  let res_data = await  model.Mongo.find({})
+  if(model.Mongo.collection.collectionName === 'carritos'){
+    let res_data = await model.Mongo.
+    find().
+    populate('listaProd')
+      return res_data
+  }
+  else{
+    let res_data = await  model.Mongo.find({})
     return res_data
+  }
 }
 
 async function Read_qry(model,qry){

@@ -5,6 +5,7 @@ import {
     getProducto,
     getProducto_Codigo,
     postProducto,
+    patchProducto,
     putProducto,
     deleteProducto,
 } from "../controllers/producto.controller.js"
@@ -15,5 +16,6 @@ productoRouter
     .get("/", getProducto)
     .get("/:id", getProducto_Codigo)
     .post("/", postProducto)
+    .patch("/:id", patchProducto)
     .put("/:id", putProducto)
     .delete("/:id", deleteProducto);
