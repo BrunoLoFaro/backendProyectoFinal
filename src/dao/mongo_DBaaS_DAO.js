@@ -24,13 +24,23 @@ async function Connect (){
         ///throw `Error: ${error}`;
     }
 }
-function Create (model, obj){
+async function Create (model, obj){
+  if(model.Mongo.collection.collectionName === 'carritos'){
+    let res_data = await model.Mongo.
+    find().
+    populate('listaItems')
+      return res_data
+  }
+  else{
+
     const SaveModel = new model.Mongo(obj)
-    SaveModel.save();
+    let res = await SaveModel.save();
+    return res
+  }
 }
 
 async function Read_all(model){
-  if(model.Mongo.collection.collectionName === 'carritos'){
+/*  if(model.Mongo.collection.collectionName === 'carritos'){
     let res_data = await model.Mongo.
     find().
     populate('listaProd')
@@ -39,7 +49,7 @@ async function Read_all(model){
   else{
     let res_data = await  model.Mongo.find({})
     return res_data
-  }
+  }*/
 }
 
 async function Read_qry(model,qry){

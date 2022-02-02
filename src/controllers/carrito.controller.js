@@ -89,6 +89,24 @@ export const postCarrito = (req,res,next)=>{
             .then((response)=>{
                 res.json(response)
             })
+            //Math.round(+new Date()/1000)
+        }
+        catch(err)
+        {
+            console.log(err)
+            next(err)
+        }
+
+};
+export const postAddProd = (req,res,next)=>{
+    //if (admin)
+        try{
+            let prod = req.body;
+            persistence.Create(model, prod)
+            .then((response)=>{
+                res.json(response)
+            })
+            //Math.round(+new Date()/1000)
         }
         catch(err)
         {

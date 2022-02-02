@@ -8,12 +8,28 @@ class Carrito{
     }
 }
 
+let ItemSchema = new mongoose.Schema({
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "productos",
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: [1, 'Quantity can not be less than 1.']
+    },
+    total: {
+        type: Number,
+        required: true,
+    }
+})
+
 const carritosCollection = 'carritos'
 const carritosSchema = new mongoose.Schema({
     id:{type:Number, require: true},
-    timestamp:{type:String, require: true, max:100},
-    prod:{ type: mongoose.Schema.Types.ObjectId, ref: 'productos' },
-    listaProd:[{ type: mongoose.Schema.Types.ObjectId, ref: 'productos' }]//importar model producto?
+    timestamp:{type:String, require: true},
+    listaItems:[ItemSchema],
+    total:{type:Number, require: true}
 })
 const Mongo = mongoose.model(carritosCollection, carritosSchema);
 
