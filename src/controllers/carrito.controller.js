@@ -132,12 +132,16 @@ export async function postAddProd(req,res,next){
                 })
             }
 
-        ItemReq.total = await parseInt(prodInfo[0].precio * ItemReq.quantity)
+        ItemReq.total = parseInt(prodInfo[0].precio * ItemReq.quantity)
         //product is already in carrito
             const indexFound = carritoInfo[0].listaItems.findIndex(item => item.product._id == ItemReq.product);
                 if(indexFound!=-1){
                     carritoInfo[0].listaItems[indexFound].quantity+=ItemReq.quantity
                     carritoInfo[0].listaItems[indexFound].total+=ItemReq.total
+                    if(carritoInfo[0].listaItems[indexFound].quantity<=0)
+                        carritoInfo[0].listaItems.splice(indexFound)
+                    if(carritoInfo[0].listaItems[indexFound].total<=0)
+                        carritoInfo[0].listaItems[indexFound].total=0
                 }
             //product is not in carrito
                 else{
@@ -150,7 +154,6 @@ export async function postAddProd(req,res,next){
         })
     }
     catch(err){
-        console.log(err)
         next(err)
     }
 };
