@@ -36,10 +36,11 @@ async function Read_all(model){
 }
 
 async function Read_qry(model,qry){
-  //console.log(qry)
-  //console.log(typeof qry.id + mongoose.Types.ObjectId.isValid(qry.id));
-  let mongoQry = {_id: qry.id}
-  let res_data = await model.Mongo.find(mongoQry)
+  if('id' in qry){
+    qry._id = qry.id
+    delete qry.id
+  }
+  let res_data = await model.Mongo.find(qry)
   return res_data
 }
 

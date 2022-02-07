@@ -8,6 +8,7 @@
     "npm": ">=6.0.0"
   },
   "dependencies": {
+    "artillery": "^1.7.9",
     "bcrypt": "^5.0.1",
     "cluster": "^0.7.7",
     "cors": "^2.8.5",
