@@ -1,6 +1,9 @@
 import {persistence} from '../dao/persistence.js'
 import {model} from '../models/usuario.model.js'
-
+import fs from 'fs'
+import path from 'path'
+const __dirname = path.dirname('C:/Users/Bruno/Desktop/proyecto_final/src/');
+console.log(__dirname)
 export const getUsuario = (req,res, next)=>{
     try{
         persistence.Read_all(model)
@@ -37,7 +40,7 @@ let qry = {id: id}
     }
     catch(err)
     {
-        next(err)
+        console.log(err)
     }
 };
 
@@ -86,24 +89,29 @@ export const patchUsuario =  (req,res,next)=>{
         next(err)
     }
 };
-export const updateAvatar =  (req,res,next)=>{
+export async function updateAvatar(req,res,next){
     let id = req.params.id
-    let obj = {avatar: id+'.jpg'}
     let qry = {'id': id}
-    let update = {$set: obj}
-    try{
-        persistence.Update(model,qry, update)
-        .then((response)=>{
-            //res.send(response)
-            next()
+    let user = await persistence.Read_qry(model,qry)
+    if(user.length===0){
+        return res.status(500).json({
+            type: "User Not Found",
+            msg: "Invalid request"
         })
     }
-    catch(err)
-    {
-        //console.log(err)
-        next(err)
-    }
-};
+    user[0].avatar = user[0]._id + '.jpg'
+        try{
+            persistence.partialUpdate(user[0])
+            .then((response)=>{
+                next()
+                res.send(response)
+            })
+        }
+        catch(err)
+        {
+            next(err)
+        }
+}
 export const putUsuario =  (req,res,next)=>{
     let id = req.params.id
     let obj = req.body;
@@ -122,11 +130,23 @@ export const putUsuario =  (req,res,next)=>{
         next(err)
     }
 };
-export const deleteUsuario = (req,res,next)=>{
+export async function deleteUsuario(req,res,next){
     let id = req.params.id
     let qry = {'id': id}
     try{
         //if(admin){
+        let user = await persistence.Read_qry(model,qry)
+        if(user.length===0){
+            return res.status(500).json({
+                type: "User Not Found",
+                msg: "Invalid request"
+            })
+        }
+        let relativePath = '/src/public/'+user[0]._id+'.jpg'     
+        fs.unlink(path.join(__dirname, relativePath), function (err) {
+            if (err) throw err;
+            console.log('File deleted!');
+        });
         persistence.Delete(model,qry)
         .then((response)=>{
             res.json(response)
@@ -142,11 +162,12 @@ export const deleteUsuario = (req,res,next)=>{
 export const postUsuario = (req,res,next)=>{
     //if (admin)
         try{
-            let prod = req.body;
-            prod.avatar = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
-            prod.contentType = 'image/png'
-            persistence.Create(model, prod)
+            let  user = req.body;
+            /*user.avatar = user.alias+'.jpg'
+            user.contentType = 'image/png'*/
+            persistence.Create(model, user)
             .then((response)=>{
+                next()
                 res.json(response)
             })
         }

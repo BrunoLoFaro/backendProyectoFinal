@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 class Producto{
     constructor(id, timestamp, nombre,descripcion, codigo, foto, precio, stock){
-        this.id=id
         this.timestamp=timestamp
         this.nombre=nombre
         this.descripcion=descripcion
@@ -13,7 +12,6 @@ class Producto{
 }
 const productosCollection = 'productos'
 const productosSchema = new mongoose.Schema({
-    id:{type:Number, require: true},
     timestamp:{type:String, require: true, max:100},
     nombre:{type:String, require: true, max:100},
     descripcion:{type:String, require: true, max:100},

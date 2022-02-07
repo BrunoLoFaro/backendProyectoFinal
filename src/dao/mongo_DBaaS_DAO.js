@@ -50,12 +50,18 @@ async function partialUpdate(model){
 }
 
 async function Update(model,qry, update){
-  let mongoQry = {_id: qry.id}
-  let res_data = model.Mongo.updateOne(mongoQry, update)
+  if('id' in qry){
+    qry._id = qry.id
+    delete qry.id
+  }
+  let res_data = model.Mongo.updateOne(qry, update)
   return res_data
 }
 async function Delete(model, qry){
-  let mongoQry = {_id: qry.id}
-  let res_data = await model.Mongo.deleteOne(mongoQry)
+  if('id' in qry){
+    qry._id = qry.id
+    delete qry.id
+  }
+  let res_data = await model.Mongo.deleteOne(qry)
   return res_data
 }

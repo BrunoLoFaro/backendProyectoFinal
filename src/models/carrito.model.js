@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 class Carrito{
-    constructor(id, timestamp, listaProd){
-        this.id=id
+    constructor(timestamp, listaProd){
         this.timestamp=timestamp
         this.listaProd=listaProd//dejo listaprod para no romper el fs. pending fix
     //cambio el schema para usar populate
@@ -26,7 +25,6 @@ let ItemSchema = new mongoose.Schema({
 
 const carritosCollection = 'carritos'
 const carritosSchema = new mongoose.Schema({
-    id:{type:Number, require: true},
     listaItems:[ItemSchema],
     total:{type:Number, require: true}
 },

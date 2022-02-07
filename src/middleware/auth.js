@@ -4,6 +4,8 @@ import {searchUsuario_Alias, searchUsuario_Codigo, postUsuarioN} from '../contro
 import bcrypt from 'bcrypt'
 const saltRounds = 10;
 
+//although alias is used to find a user in the db. The req param is username
+
 let LocalStrategy = passportLocal.Strategy
 passport.use('signup', new LocalStrategy({
         passReqToCallback : true

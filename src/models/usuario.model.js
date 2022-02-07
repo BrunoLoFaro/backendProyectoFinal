@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 export class Usuario{
     constructor(id,password,nombre,apellido,edad,alias,avatar){
-        this.id = id
         this.password = password
         this.nombre = nombre
         this.apellido = apellido
@@ -12,13 +11,12 @@ export class Usuario{
   }
 const usuariosCollection = 'usuarios'
 const usuariosSchema = new mongoose.Schema({
-    id:{type:Number, require: true},
     password:{type:String, require: true},
+    avatar:{type:String, require: true, max:100},
     nombre:{type:String, require: true, max:100},
     apellido:{type:String, require: true, max:100},
     edad:{type:Number, require: true, max:100},
     alias:{type:String, require: true, max:100},
-    avatar:{data:Buffer, contentType:String}
 })
 
 const Mongo = mongoose.model(usuariosCollection, usuariosSchema);

@@ -3,6 +3,8 @@ import {Lista} from './claseLista.js'
 import { Archivo } from './claseArchivo.js';
 import fs from 'fs';
 
+//generar id. En las otras persistencias es generado por la db
+
 export class local_txt extends persistencia_default{
   constructor (nombre="gen.txt",vector=[]) {
     super('local_txt', Connect, Create, Read, Read_find, Update, Delete)

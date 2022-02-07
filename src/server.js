@@ -13,7 +13,7 @@ if (cluster.isPrimary && process.env.MULTITHREADING=='true') {
         cluster.fork();
     }
     cluster.on('exit', (worker, code, signal) => {
-        console.log(`worker ${worker.process.pid} died`);
+        logger.warn(`worker ${worker.process.pid} died`);
     });
 } 
 

@@ -124,7 +124,7 @@ export async function postAddProd(req,res,next){
             }
         //product exists in db
         let prodInfo = await persistence.Read_qry(prodModel, itemQry)
-            if(!prodInfo)
+            if(prodInfo.length===0)
             {
                 return res.status(500).json({
                     type: "Producto Not Found",

@@ -47,12 +47,13 @@ export function getRutaProtegida(req, res){
     res.send('<h1>Pude ingresar a la ruta protegida</h1>');
 }
 
-export function datos(req,res){
+export function datos(req, res, next){
         let user = req.user;
         res.json(user);
 }
 
 export function checkAuthentication(req, res, next){
+    console.log(req.isAuthenticated())
     if (req.isAuthenticated()){
         next();
     } else {
