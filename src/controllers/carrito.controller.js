@@ -136,13 +136,11 @@ export async function postAddProd(req,res,next){
         //product is already in carrito
             const indexFound = carritoInfo[0].listaItems.findIndex(item => item.product._id == ItemReq.product);
                 if(indexFound!=-1){
-                    //console.log("encontrado")
                     carritoInfo[0].listaItems[indexFound].quantity+=ItemReq.quantity
                     carritoInfo[0].listaItems[indexFound].total+=ItemReq.total
                 }
             //product is not in carrito
                 else{
-                    //console.log("no encontrado")
                     carritoInfo[0].listaItems.push(ItemReq)
                 }
         //actualizo el total del carrito
@@ -150,19 +148,6 @@ export async function postAddProd(req,res,next){
         persistence.partialUpdate(carritoInfo[0]).then(response=>{
             res.json(response)
         })
-        //persistence.Update(model, carritoQry, carritoInfo)
-        /*    
-            //This removes an item from the the cart if the quantity is set to zero, We can use this method to remove an item from the list
-            if (indexFound !== -1 && quantity <= 0) {
-                carrito.listaItems.splice(indexFound, 1);
-                if (carrito.listaItems.length == 0) {
-                    carrito.total = 0;
-                } else {
-                    //update carrito total
-                    updateCarrito.total = carrito.listaItems.map(item => item.total).reduce((acc, next) => acc + next);
-                }
-            }
-        */
     }
     catch(err){
         console.log(err)
