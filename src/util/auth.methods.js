@@ -1,3 +1,7 @@
+import nodemailer from 'nodemailer'
+import * as mail from './mail.config.js'
+import {logger} from '../middleware/logger.config.js'
+
 export function getLogin(req, res){
     if (req.isAuthenticated()){
         let user = req.user;
@@ -19,7 +23,10 @@ export function getSignUp(req, res){
     res.redirect('/register.html');
 }
 
-export function postSignUp(req, res){
+export async function postSignUp(req, res){
+    let info = await mail.transporter.sendMail(mail.mail);
+    logger.info("Message sent: %s", info.messageId);
+    logger.info("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     res.json('signup done');
 }
 

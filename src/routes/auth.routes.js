@@ -5,7 +5,7 @@ import passport from 'passport';
 export const authRouter = Router()
 
 authRouter
-.post('/signup', passport.authenticate('signup', {failureRedirect: '/auth/failsignup'}), methods.postSignUp)
+.post('/signup', methods.postSignUp, passport.authenticate('signup', {failureRedirect: '/auth/failsignup'}))
 .post('/failsignup', methods.failSignUp)
 .post('/login', passport.authenticate('login', {failureRedirect: '/auth/faillogin'}), methods.postLogin)
 .post('/faillogin', methods.failLogin)
