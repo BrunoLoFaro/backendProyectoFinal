@@ -16,7 +16,7 @@ carritoRouter
     .get("/", getCarrito)
     .get("/:id", getCarrito_Codigo)
     .post("/", postCarrito)//agregar carrito completo
-    .post("/:id", postAddProd)//agregar un producto al carrito
+    .post("/item/", postAddProd)//agregar un producto al carrito
     .patch("/:id", patchCarrito)
     .put("/:id", putCarrito)
     .delete("/:id", deleteCarrito);

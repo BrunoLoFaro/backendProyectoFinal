@@ -1,4 +1,5 @@
 import {persistence} from '../dao/persistence.js'
+import {model as prodModel} from '../models/producto.model.js'
 import {model} from '../models/carrito.model.js'
 
 export const getCarrito = (req,res, next)=>{
@@ -84,12 +85,12 @@ export const deleteCarrito = (req,res,next)=>{
 export const postCarrito = (req,res,next)=>{
     //if (admin)
         try{
-            let prod = req.body;
-            persistence.Create(model, prod)
+//setear total e id?
+            persistence.Create(model)
             .then((response)=>{
                 res.json(response)
             })
-            //Math.round(+new Date()/1000)
+
         }
         catch(err)
         {
@@ -98,19 +99,73 @@ export const postCarrito = (req,res,next)=>{
         }
 
 };
-export const postAddProd = (req,res,next)=>{
-    //if (admin)
-        try{
-            let prod = req.body;
-            persistence.Create(model, prod)
-            .then((response)=>{
-                res.json(response)
-            })
-            //Math.round(+new Date()/1000)
-        }
-        catch(err)
-        {
-            next(err)
-        }
+export async function postAddProd(req,res,next){
 
+    let carritoReq = req.body.carritoId
+    
+    let ItemReq = {
+        product: req.body.productId,
+        quantity: parseInt(req.body.quantity),
+        total:0
+    }
+
+    let itemQry = {id: ItemReq.product}
+    let carritoQry = {id: carritoReq}
+
+    try{
+        //carrito exists in db
+        let carritoInfo = await persistence.Read_qry(model, carritoQry)
+            if(carritoInfo.length===0)
+            {
+                return res.status(500).json({
+                    type: "Carrito Not Found",
+                    msg: "Invalid request"
+                })
+            }
+        //product exists in db
+        let prodInfo = await persistence.Read_qry(prodModel, itemQry)
+            if(!prodInfo)
+            {
+                return res.status(500).json({
+                    type: "Producto Not Found",
+                    msg: "Invalid request"
+                })
+            }
+
+        ItemReq.total = await parseInt(prodInfo[0].precio * ItemReq.quantity)
+        //product is already in carrito
+            const indexFound = carritoInfo[0].listaItems.findIndex(item => item.product._id == ItemReq.product);
+                if(indexFound!=-1){
+                    //console.log("encontrado")
+                    carritoInfo[0].listaItems[indexFound].quantity+=ItemReq.quantity
+                    carritoInfo[0].listaItems[indexFound].total+=ItemReq.total
+                }
+            //product is not in carrito
+                else{
+                    //console.log("no encontrado")
+                    carritoInfo[0].listaItems.push(ItemReq)
+                }
+        //actualizo el total del carrito
+        carritoInfo[0].total = carritoInfo[0].listaItems.map(item => item.total).reduce((acc, next) => acc + next);
+        persistence.partialUpdate(carritoInfo[0]).then(response=>{
+            res.json(response)
+        })
+        //persistence.Update(model, carritoQry, carritoInfo)
+        /*    
+            //This removes an item from the the cart if the quantity is set to zero, We can use this method to remove an item from the list
+            if (indexFound !== -1 && quantity <= 0) {
+                carrito.listaItems.splice(indexFound, 1);
+                if (carrito.listaItems.length == 0) {
+                    carrito.total = 0;
+                } else {
+                    //update carrito total
+                    updateCarrito.total = carrito.listaItems.map(item => item.total).reduce((acc, next) => acc + next);
+                }
+            }
+        */
+    }
+    catch(err){
+        console.log(err)
+        next(err)
+    }
 };

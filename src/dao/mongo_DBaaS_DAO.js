@@ -4,7 +4,7 @@ import {logger} from '../middleware/logger.config.js'
 
 export class MongoDB_DBaaS extends persistencia_default{
   constructor () {
-    super('MongoDB_DBaaS', Connect, Create, Read_all , Read_qry, Update, Delete)
+    super('MongoDB_DBaaS', Connect, Create, Read_all , Read_qry, Update, partialUpdate, Delete)
   }
 }
 
@@ -25,42 +25,36 @@ async function Connect (){
     }
 }
 async function Create (model, obj){
-  if(model.Mongo.collection.collectionName === 'carritos'){
-    let res_data = await model.Mongo.
-    find().
-    populate('listaItems')
-      return res_data
-  }
-  else{
-
     const SaveModel = new model.Mongo(obj)
     let res = await SaveModel.save();
     return res
-  }
 }
 
 async function Read_all(model){
-/*  if(model.Mongo.collection.collectionName === 'carritos'){
-    let res_data = await model.Mongo.
-    find().
-    populate('listaProd')
-      return res_data
-  }
-  else{
     let res_data = await  model.Mongo.find({})
     return res_data
-  }*/
 }
 
 async function Read_qry(model,qry){
-  let res_data = await model.Mongo.find(qry)
+  //console.log(qry)
+  //console.log(typeof qry.id + mongoose.Types.ObjectId.isValid(qry.id));
+  let mongoQry = {_id: qry.id}
+  let res_data = await model.Mongo.find(mongoQry)
   return res_data
 }
+
+async function partialUpdate(model){
+  let res_data = await model.save()
+  return res_data
+}
+
 async function Update(model,qry, update){
-  let res_data = model.Mongo.updateOne(qry, update)
+  let mongoQry = {_id: qry.id}
+  let res_data = model.Mongo.updateOne(mongoQry, update)
   return res_data
 }
 async function Delete(model, qry){
-    let res_data = await model.Mongo.deleteOne(qry)
-    return res_data
+  let mongoQry = {_id: qry.id}
+  let res_data = await model.Mongo.deleteOne(mongoQry)
+  return res_data
 }

@@ -27,10 +27,16 @@ let ItemSchema = new mongoose.Schema({
 const carritosCollection = 'carritos'
 const carritosSchema = new mongoose.Schema({
     id:{type:Number, require: true},
-    timestamp:{type:String, require: true},
     listaItems:[ItemSchema],
     total:{type:Number, require: true}
-})
+},
+{ timestamps: true }
+)
+
+carritosSchema.pre('find', function() {
+    this.populate('listaItems.product');
+  })
+
 const Mongo = mongoose.model(carritosCollection, carritosSchema);
 
 let Model = Carrito
