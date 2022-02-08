@@ -138,17 +138,30 @@ export async function postAddProd(req,res,next){
                 if(indexFound!=-1){
                     carritoInfo[0].listaItems[indexFound].quantity+=ItemReq.quantity
                     carritoInfo[0].listaItems[indexFound].total+=ItemReq.total
-                    if(carritoInfo[0].listaItems[indexFound].quantity<=0)
-                        carritoInfo[0].listaItems.splice(indexFound)
                     if(carritoInfo[0].listaItems[indexFound].total<=0)
                         carritoInfo[0].listaItems[indexFound].total=0
+                    if(carritoInfo[0].listaItems[indexFound].quantity<=0)
+                        carritoInfo[0].listaItems.splice(indexFound,1)
+                        console.log(carritoInfo[0].listaItems)
                 }
             //product is not in carrito
                 else{
+                    if(ItemReq.quantity<=0)
+                    {
+                        return res.status(500).json({
+                            type: "this item was not in the chart",
+                            msg: "Invalid request"
+                        })
+                    }
                     carritoInfo[0].listaItems.push(ItemReq)
                 }
         //actualizo el total del carrito
-        carritoInfo[0].total = carritoInfo[0].listaItems.map(item => item.total).reduce((acc, next) => acc + next);
+        if(carritoInfo[0].listaItems.length>0){
+            carritoInfo[0].total = carritoInfo[0].listaItems.map(item => item.total).reduce((acc, next) => acc + next);
+        }
+        else{
+            carritoInfo[0].total = 0
+        }
         persistence.partialUpdate(carritoInfo[0]).then(response=>{
             res.json(response)
         })

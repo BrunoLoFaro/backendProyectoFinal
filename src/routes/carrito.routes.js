@@ -15,8 +15,8 @@ export const carritoRouter = Router()
 carritoRouter
     .get("/", getCarrito)
     .get("/:id", getCarrito_Codigo)
-    .post("/", postCarrito)//agregar carrito completo
-    .post("/item/", postAddProd)//agregar un producto al carrito
+    .post("/", postCarrito)
+    .post("/item/", postAddProd)
     .patch("/:id", patchCarrito)
     .put("/:id", putCarrito)
     .delete("/:id", deleteCarrito);
