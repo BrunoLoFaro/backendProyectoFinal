@@ -3,7 +3,8 @@ import {model} from '../models/usuario.model.js'
 import fs from 'fs'
 import path from 'path'
 const __dirname = path.dirname('C:/Users/Bruno/Desktop/proyecto_final/src/');
-console.log(__dirname)
+import {logger} from '../middleware/logger.config.js'
+
 export const getUsuario = (req,res, next)=>{
     try{
         persistence.Read_all(model)
@@ -35,12 +36,11 @@ export async function searchUsuario_Codigo(id){
 let qry = {id: id}
     try{
         let res = await persistence.Read_qry(model, qry)
-        console.log(res)
         return res
     }
     catch(err)
     {
-        console.log(err)
+        logger.warn(err)
     }
 };
 
@@ -48,12 +48,11 @@ export async function searchUsuario_Alias(alias){
         let qry = {alias : alias}
     try{
        let response = await persistence.Read_qry(model, qry)
-       console.log(response)
             return response
     }
     catch(err)
     {
-        console.log(err)
+        logger.warn(err)
     }
 };
 export const getUsuario_Nombre = (req,res, next)=>{
@@ -145,7 +144,7 @@ export async function deleteUsuario(req,res,next){
         let relativePath = '/src/public/'+user[0]._id+'.jpg'     
         fs.unlink(path.join(__dirname, relativePath), function (err) {
             if (err) throw err;
-            console.log('File deleted!');
+            logger.warn('File deleted!');
         });
         persistence.Delete(model,qry)
         .then((response)=>{
@@ -179,15 +178,13 @@ export const postUsuario = (req,res,next)=>{
 };
 
 export async function postUsuarioN(usuario){//for passport
-    //if (admin)
-    console.log(usuario)
         try{
             let response = await persistence.Create(model, usuario)
             return response
         }
         catch(err)
         {
-            console.log(err)
+            logger.warn(err)
         }
 
 };

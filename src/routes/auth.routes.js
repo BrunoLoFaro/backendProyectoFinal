@@ -10,4 +10,3 @@ authRouter
 .post('/login', passport.authenticate('login', {failureRedirect: '/auth/faillogin'}), methods.postLogin)
 .post('/faillogin', methods.failLogin)
 .get('/logout', methods.logout)
-.get('/datos', methods.checkAuthentication, methods.datos)

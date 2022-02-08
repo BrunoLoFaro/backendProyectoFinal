@@ -3,12 +3,15 @@ import passportLocal from 'passport-local'//passportLocal.strategy?
 import {searchUsuario_Alias, searchUsuario_Codigo, postUsuarioN} from '../controllers/usuario.controller.js'
 import bcrypt from 'bcrypt'
 const saltRounds = 10;
+import {logger} from './logger.config.js'
 
 //although alias is used to find a user in the db. The req param is username
 
 let LocalStrategy = passportLocal.Strategy
 passport.use('signup', new LocalStrategy({
-        passReqToCallback : true
+        passReqToCallback : true,
+        usernameField: 'alias',
+        passwordField: 'password'
     },
     function(req, alias, password, done) {
         let reqUser = req.query
@@ -16,7 +19,7 @@ passport.use('signup', new LocalStrategy({
     searchUsuario_Alias(alias)
     .then((usuario)=>{
         if (usuario.length != 0){
-            return done(null, false, console.log(usuario.alias, 'Usuario ya existe'));
+            return done(null, false, logger.warn(usuario.alias, 'Usuario ya existe'));
         }
         else {
             bcrypt.hash(password, saltRounds)
@@ -37,32 +40,34 @@ passport.use('signup', new LocalStrategy({
         })
     }
     catch(e){
-        console.log(e)
+        logger.warn(e)
     }
 }))
 
 passport.use('login', new LocalStrategy({
-        passReqToCallback: true
+        passReqToCallback: true,
+        usernameField: 'alias',
+        passwordField: 'password'
     }, 
     function (req, alias, password, done) {
     try{
         searchUsuario_Alias(alias)
         .then((usuario)=>{
             if (usuario.length === 0) {
-                return done(null, false, console.log(alias, 'usuario no existe'));
+                return done(null, false, logger.warn(alias, 'usuario no existe'));
             } else {
                 bcrypt.compare(password, usuario[0].password).then((comparison)=>{
                     if (comparison) {
                         return done(null, usuario)
                     } else {
-                        return done(null, false, console.log(alias, 'password errónea'));
+                        return done(null, false, logger.warn(alias, 'password errónea'));
                     }
                 })
             }
         })
     }
     catch(e){
-        console.log(e)
+        logger.warn(e)
     }
     })
 )
