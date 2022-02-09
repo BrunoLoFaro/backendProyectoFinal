@@ -4,6 +4,7 @@ import {searchUsuario_Alias, searchUsuario_Codigo, postUsuarioN} from '../contro
 import bcrypt from 'bcrypt'
 const saltRounds = 10;
 import {logger} from './logger.config.js'
+import {ROLES} from '../constants/constants.js';
 
 //although alias is used to find a user in the db. The req param is username
 
@@ -31,7 +32,8 @@ passport.use('signup', new LocalStrategy({
                     apellido: reqUser.apellido,
                     edad: reqUser.edad,
                     alias: alias,
-                    avatar: reqUser.avatar
+                    avatar: reqUser.avatar,
+                    rol: ROLES.Admin//set to Customer
                 }
                 postUsuarioN(nuevoUsuario);
                 return done(null, nuevoUsuario)
@@ -76,7 +78,7 @@ passport.serializeUser((user, done)=>{
     done(null, user[0].id);
 })
 
-passport.deserializeUser((id, done)=>{
-    let usuario = searchUsuario_Codigo(id);
+passport.deserializeUser(async (id, done)=>{
+    let usuario = await searchUsuario_Codigo(id);
     done(null, usuario);
 })

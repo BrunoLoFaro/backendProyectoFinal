@@ -1,5 +1,7 @@
 import {Router} from "express"
 import multer from 'multer'
+import {checkIsInRole} from '../util/auth.methods.js';
+import {ROLES} from '../constants/constants.js';
 import {
     getProducto,
     getProducto_Codigo,
@@ -14,7 +16,9 @@ export const productoRouter = Router()
 productoRouter
     .get("/", getProducto)
     .get("/:id", getProducto_Codigo)
-    .post("/", postProducto)
+    .post("/",
+        checkIsInRole(ROLES.Admin),
+        postProducto)
     .patch("/:id", patchProducto)
     .put("/:id", putProducto)
     .delete("/:id", deleteProducto);

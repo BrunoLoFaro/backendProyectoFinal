@@ -38,3 +38,17 @@ export function checkAuthentication(req, res, next){
         res.json('debe loggearse');
     }
 }
+
+export const checkIsInRole = (...roles) => (req, res, next) => {
+
+    if (!req.user) {
+    return res.redirect('/faillogin')
+    }
+    const hasRole = roles.find(role => req.user[0].rol == role)
+
+    if (!hasRole) {
+    return res.redirect('/faillogin')
+    }
+
+    return next()
+}

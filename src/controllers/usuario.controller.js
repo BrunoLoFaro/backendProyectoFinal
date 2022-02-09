@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 const __dirname = path.dirname('C:/Users/Bruno/Desktop/proyecto_final/src/');
 import {logger} from '../middleware/logger.config.js'
+import {ROLES} from '../constants/constants.js';
 
 export const getUsuario = (req,res, next)=>{
     try{
@@ -142,10 +143,12 @@ export async function deleteUsuario(req,res,next){
             })
         }
         let relativePath = '/src/public/'+user[0]._id+'.jpg'     
-        fs.unlink(path.join(__dirname, relativePath), function (err) {
-            if (err) throw err;
-            logger.warn('File deleted!');
-        });
+        if (fs.existsSync(relativePath)){
+            fs.unlink(path.join(__dirname, relativePath), function (err) {
+                if (err) throw err;
+                logger.warn('File deleted!');
+            });
+        }
         persistence.Delete(model,qry)
         .then((response)=>{
             res.json(response)
@@ -164,6 +167,7 @@ export const postUsuario = (req,res,next)=>{
             let  user = req.body;
             /*user.avatar = user.alias+'.jpg'
             user.contentType = 'image/png'*/
+            //user.rol=ROLES.Admin//set customer as default role
             persistence.Create(model, user)
             .then((response)=>{
                 next()
