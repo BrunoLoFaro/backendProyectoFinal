@@ -33,7 +33,7 @@ passport.use('signup', new LocalStrategy({
                     edad: reqUser.edad,
                     alias: alias,
                     avatar: reqUser.avatar,
-                    rol: ROLES.Admin//set to Customer
+                    rol: ROLES.Customer
                 }
                 postUsuarioN(nuevoUsuario);
                 return done(null, nuevoUsuario)

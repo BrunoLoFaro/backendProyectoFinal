@@ -19,6 +19,12 @@ productoRouter
     .post("/",
         checkIsInRole(ROLES.Admin),
         postProducto)
-    .patch("/:id", patchProducto)
-    .put("/:id", putProducto)
-    .delete("/:id", deleteProducto);
+    .patch("/:id", 
+        checkIsInRole(ROLES.Admin),
+        patchProducto)
+    .put("/:id", 
+        checkIsInRole(ROLES.Admin),
+        putProducto)
+    .delete("/:id", 
+        checkIsInRole(ROLES.Admin),
+        deleteProducto);

@@ -3,7 +3,7 @@ import {upload} from '../middleware/multer.config.js'
 import {
     getUsuario,
     getUsuario_Codigo,
-    postUsuario,
+    /*postUsuario,*/
     patchUsuario,
     updateAvatar,
     putUsuario,
@@ -15,7 +15,7 @@ export const usuarioRouter = Router()
 usuarioRouter
     .get("/", getUsuario)
     .get("/:id", getUsuario_Codigo)
-    .post("/", postUsuario)
+    //.post("/", postUsuario)
     .put("/:id", putUsuario)
     .patch("/avatar/:id", updateAvatar, upload.single('avatar'))
     .delete("/:id", deleteUsuario);

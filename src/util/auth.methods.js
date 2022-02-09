@@ -42,12 +42,18 @@ export function checkAuthentication(req, res, next){
 export const checkIsInRole = (...roles) => (req, res, next) => {
 
     if (!req.user) {
-    return res.redirect('/faillogin')
+        return res.status(500).json({
+            type: "Authentication error",
+            msg: "Not logged in"
+        })
     }
     const hasRole = roles.find(role => req.user[0].rol == role)
 
     if (!hasRole) {
-    return res.redirect('/faillogin')
+        return res.status(500).json({
+            type: "No Permission",
+            msg: "The current user has no permition"
+        })
     }
 
     return next()
