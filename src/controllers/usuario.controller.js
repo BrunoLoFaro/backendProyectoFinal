@@ -4,7 +4,6 @@ import fs from 'fs'
 import path from 'path'
 const __dirname = path.dirname('C:/Users/Bruno/Desktop/proyecto_final/src/');
 import {logger} from '../middleware/logger.config.js'
-import {ROLES} from '../constants/constants.js';
 
 export const getUsuario = (req,res, next)=>{
     try{

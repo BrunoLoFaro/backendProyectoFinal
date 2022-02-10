@@ -51,8 +51,8 @@ export const checkIsInRole = (...roles) => (req, res, next) => {
 
     if (!hasRole) {
         return res.status(500).json({
-            type: "No Permission",
-            msg: "The current user has no permition"
+            type: "Permission Denied",
+            msg: "The current user has no permission"
         })
     }
 

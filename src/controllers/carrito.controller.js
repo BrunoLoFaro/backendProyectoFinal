@@ -53,7 +53,6 @@ export const putCarrito =  (req,res,next)=>{
     let qry = {'id': id}
     let update = {$set: prod}
     try{
-        //if (admin){
         persistence.Update(model,qry, update)
         .then((response)=>{
             res.json(response)
