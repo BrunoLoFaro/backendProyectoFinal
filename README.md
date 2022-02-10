@@ -1,3 +1,1 @@
-backendProyectoFinal
-
-1° Entrega de aplicacion eCommerce backend
+Rest API built with Express using DAO Design Pattern for an e-commerce's shopping cart. Features include: authentication, role based authorization, cloud deployment, multithreading, e-mailing, multiple persistence options (local and cloud), Sql & NoSql dbs. https://proyecto--final.herokuapp.com/
