@@ -85,7 +85,6 @@ export const patchUsuario =  (req,res,next)=>{
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
@@ -118,7 +117,6 @@ export const putUsuario =  (req,res,next)=>{
     let qry = {'id': id}
     let update = {$set: obj}
     try{
-        //if (admin){
         persistence.Update(model,qry, update)
         .then((response)=>{
             res.json(response)
@@ -126,7 +124,6 @@ export const putUsuario =  (req,res,next)=>{
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
@@ -134,7 +131,6 @@ export async function deleteUsuario(req,res,next){
     let id = req.params.id
     let qry = {'id': id}
     try{
-        //if(admin){
         let user = await persistence.Read_qry(model,qry)
         if(user.length===0){
             return res.status(500).json({
@@ -156,13 +152,11 @@ export async function deleteUsuario(req,res,next){
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
 
 export const postUsuario = (req,res,next)=>{
-    //if (admin)
         try{
             let  user = req.body;
             /*user.avatar = user.alias+'.jpg'

@@ -53,7 +53,6 @@ export const putProducto =  (req,res,next)=>{
     let qry = {'id': id}
     let update = {$set: prod}
     try{
-        //if (admin){
         persistence.Update(model,qry, update)
         .then((response)=>{
             res.json(response)
@@ -61,7 +60,6 @@ export const putProducto =  (req,res,next)=>{
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
@@ -69,7 +67,6 @@ export const deleteProducto = (req,res,next)=>{
     let id = req.params.id
     let qry = {'id': id}
     try{
-        //if(admin){
         persistence.Delete(model,qry)
         .then((response)=>{
             res.json(response)
@@ -77,13 +74,11 @@ export const deleteProducto = (req,res,next)=>{
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
 
 export const postProducto = (req,res,next)=>{
-    //if (admin)
         try{
             let prod = req.body;
             persistence.Create(model, prod)

@@ -61,7 +61,6 @@ export const putCarrito =  (req,res,next)=>{
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
@@ -69,7 +68,6 @@ export const deleteCarrito = (req,res,next)=>{
     let id = req.params.id
     let qry = {'id': id}
     try{
-        //if(admin){
         persistence.Delete(model,qry)
         .then((response)=>{
             res.json(response)
@@ -77,15 +75,12 @@ export const deleteCarrito = (req,res,next)=>{
     }
     catch(err)
     {
-        //console.log(err)
         next(err)
     }
 };
 
 export const postCarrito = (req,res,next)=>{
-    //if (admin)
         try{
-//setear total e id?
             persistence.Create(model)
             .then((response)=>{
                 res.json(response)
